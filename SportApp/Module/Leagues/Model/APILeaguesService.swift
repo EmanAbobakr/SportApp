@@ -1,5 +1,5 @@
 //
-//  APIService.swift
+//  APILeaguesService.swift
 //  SportApp
 //
 //  Created by EmyAbobakr on 2/1/22.
@@ -9,23 +9,22 @@
 import Foundation
 import Alamofire
 
-
-class APIService
+class APILeaguesService
 {
-    func fetchResult(complitionHandler : @escaping (SportsResult?) -> Void)
+    func fetchResult(complitionHandler : @escaping (LeaguesResult?) -> Void)
     {
         let header : HTTPHeaders = [
                .accept("application/json")
            ]
-        let strURL = "https://www.thesportsdb.com/api/v1/json/2/all_sports.php"
+        let strURL = "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?s=Soccer"
         _ = AF.request(strURL , headers: header)
                .responseJSON{ (response) in
                 if response.value != nil
                 {
                     do{
-                        let sportsResult = try JSONDecoder().decode(SportsResult.self, from: response.data!)
-                        //print(sportsResult.sports[0].strSport ?? "api empty ya Emy")
-                        complitionHandler(sportsResult)
+                        let leaguesResult = try JSONDecoder().decode(LeaguesResult.self, from: response.data!)
+                        //print(leaguesResult.countrys[0].strLeague ?? "api empty ya Emy")
+                        complitionHandler(leaguesResult)
                     }catch let error{
                         print(error.localizedDescription)
                         complitionHandler(nil)

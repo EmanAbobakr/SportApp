@@ -32,7 +32,7 @@ class HomeVC: UIViewController,HomeProtocol {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //title = "Sports"
+        title = "Sports"
         setupCollectionView()
         myPresenter.getSports()
         animator()
@@ -40,6 +40,9 @@ class HomeVC: UIViewController,HomeProtocol {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let leagueVC = segue.destination as! LeaguesVC
+    }
 
     /*
     // MARK: - Navigation
@@ -73,12 +76,12 @@ class HomeVC: UIViewController,HomeProtocol {
         myPresenter.attachView(view: self)
         myPresenter.getSports()
     }
-    func stopAnimator()
-    {
+    func stopAnimator(){
+        
         indicator.stopAnimating()
     }
-    func reloadCollectionData()
-    {
+    
+    func reloadCollectionData(){
         
         resultView = myPresenter.sportsResult.map({
             (item) -> ResultView in
@@ -101,10 +104,7 @@ extension HomeVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellid", for: indexPath) as! HomeCollectionCell
-        /*
-        cell.cellText.text = "Hello"
-        cell.cellImage.image = UIImage(named: "f.jpg")
-        */
+        
         cell.cellText.text = resultView[indexPath.row].name
         let url = URL(string: resultView[indexPath.row].imageURL)
         cell.cellImage.kf.setImage(with: url)
@@ -120,6 +120,11 @@ extension HomeVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollecti
         
     }
     
+    /*
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+    */
 
 
     

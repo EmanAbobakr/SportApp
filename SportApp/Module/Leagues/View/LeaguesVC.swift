@@ -1,19 +1,53 @@
 //
-//  FavouritesVC.swift
+//  LeaguesVCTableViewController.swift
 //  SportApp
 //
-//  Created by EmyAbobakr on 1/28/22.
+//  Created by EmyAbobakr on 2/1/22.
 //  Copyright © 2022 EmyAbobakr. All rights reserved.
 //
 
 import UIKit
+import Kingfisher
 
-class FavouritesVC: UITableViewController {
+protocol LeaguesProtocol {
+    func stopAnimator()
+    func reloadTableData()
+}
 
+struct LeaguesResultView
+{
+    var name: String
+    var imageURL : String
+    var ytURL : String
+}
+
+class LeaguesVC: UITableViewController {
+
+    let indicator = UIActivityIndicatorView(style: .large)
+    var myPresenter = LeaguesPresenter()
+    var resultView :[LeaguesResultView]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Leagues"
         setupTableView()
-
+        myPresenter.getLeagues()
+        animator()
+        getData()
+    }
+    
+    
+    func animator()
+    {
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        indicator.startAnimating()
+            
+    }
+    func getData()
+    {
+        myPresenter.attachView(view: self)
+        myPresenter.getLeagues()
     }
     
     func setupTableView()
@@ -22,6 +56,28 @@ class FavouritesVC: UITableViewController {
         self.tableView.dataSource = self
     }
 
+    
+
+}
+
+extension LeaguesVC: LeaguesProtocol
+{
+    func stopAnimator() {
+        indicator.stopAnimating()
+    }
+    
+    func reloadTableData() {
+        
+        resultView = myPresenter.leaguesResult.map({ (item) -> LeaguesResultView in
+            return LeaguesResultView(name: item.strLeague ?? " ", imageURL: item.strBadge ?? " ", ytURL: item.strYoutube ?? " ")
+        })
+ 
+        self.tableView.reloadData()
+    }
+}
+
+extension LeaguesVC
+{
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -31,7 +87,7 @@ class FavouritesVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return resultView?.count ?? 0
     }
 
     
@@ -39,16 +95,20 @@ class FavouritesVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeagueCellid", for: indexPath) as! LeagueCell
 
         // Configure the cell...
+        /*
         cell.leagueImg.image = UIImage(named: "f.jpg")
         cell.LeagueNameText.text = "Helloooo"
-
+        */
+        cell.LeagueNameText.text = resultView[indexPath.row].name
+        let url = URL(string: resultView[indexPath.row].imageURL)
+        cell.imageView?.kf.setImage(with: url)
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
-    
 
     /*
     // Override to support conditional editing of the table view.
@@ -66,7 +126,7 @@ class FavouritesVC: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
@@ -94,5 +154,4 @@ class FavouritesVC: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
