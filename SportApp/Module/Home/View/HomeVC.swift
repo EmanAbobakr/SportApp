@@ -7,10 +7,26 @@
 //
 
 import UIKit
+import Kingfisher
 
-class HomeVC: UIViewController {
+protocol HomeProtocol
+{
+    func stopAnimator()
+    func reloadCollectionData()
+}
+
+struct ResultView
+{
+    var name: String
+    var imageURL : String
+}
+
+class HomeVC: UIViewController,HomeProtocol {
     
     @IBOutlet weak var myHomeCollection: UICollectionView!
+    let indicator = UIActivityIndicatorView(style: .large)
+    var myPresenter = HomePresenter()
+    var resultView :[ResultView]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +34,9 @@ class HomeVC: UIViewController {
         // Do any additional setup after loading the view.
         //title = "Sports"
         setupCollectionView()
+        myPresenter.getSports()
+        animator()
+        getData()
         
     }
     
@@ -37,6 +56,37 @@ class HomeVC: UIViewController {
         myHomeCollection.dataSource = self
         //myHomeCollection.flo
     }
+    func animator()
+    {
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        indicator.startAnimating()
+            
+    }
+    func configurePresenter()
+    {
+        
+        
+    }
+    func getData()
+    {
+        myPresenter.attachView(view: self)
+        myPresenter.getSports()
+    }
+    func stopAnimator()
+    {
+        indicator.stopAnimating()
+    }
+    func reloadCollectionData()
+    {
+        
+        resultView = myPresenter.sportsResult.map({
+            (item) -> ResultView in
+            //print(item.strSport!)
+            return ResultView(name: item.strSport!, imageURL: item.strSportThumb!)
+        })
+        myHomeCollection.reloadData()
+    }
 
 }
 
@@ -46,14 +96,18 @@ extension HomeVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollecti
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //number of sports
-        return 10
+        return resultView?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellid", for: indexPath) as! HomeCollectionCell
+        /*
         cell.cellText.text = "Hello"
         cell.cellImage.image = UIImage(named: "f.jpg")
-        
+        */
+        cell.cellText.text = resultView[indexPath.row].name
+        let url = URL(string: resultView[indexPath.row].imageURL)
+        cell.cellImage.kf.setImage(with: url)
 
         return cell
     }
