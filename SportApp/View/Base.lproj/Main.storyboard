@@ -62,7 +62,7 @@
             </objects>
             <point key="canvasLocation" x="-188" y="224"/>
         </scene>
-        <!--HomeVC-->
+        <!--Sports-->
         <scene sceneID="M4h-pu-bsS">
             <objects>
                 <viewController id="jcD-Lv-xU4" customClass="HomeVC" customModule="SportApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -73,56 +73,60 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="x5E-sn-c8U">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="dn4-LW-auN">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="dn4-LW-auN">
                                     <size key="itemSize" width="252" height="248"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="1" minY="1" maxX="1" maxY="1"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellid" id="Cpf-RD-eON" customClass="HomeCollectionCell" customModule="SportApp" customModuleProvider="target">
-                                        <rect key="frame" x="81" y="0.0" width="252" height="248"/>
+                                        <rect key="frame" x="81" y="1" width="252" height="248"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="UZJ-Ap-dNU">
                                             <rect key="frame" x="0.0" y="0.0" width="252" height="248"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b4w-9t-nZr">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b4w-9t-nZr">
                                                     <rect key="frame" x="0.0" y="0.0" width="252" height="248"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yn2-pC-ivn">
-                                                    <rect key="frame" x="0.0" y="214" width="252" height="34"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hH-6F-3Pg">
+                                                    <rect key="frame" x="0.0" y="221.5" width="252" height="26.5"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="b4w-9t-nZr" firstAttribute="leading" secondItem="UZJ-Ap-dNU" secondAttribute="leading" id="0bd-vL-JJP"/>
-                                                <constraint firstAttribute="bottom" secondItem="yn2-pC-ivn" secondAttribute="bottom" id="82Q-Vw-8E2"/>
                                                 <constraint firstAttribute="bottom" secondItem="b4w-9t-nZr" secondAttribute="bottom" id="9EU-0P-fHJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="b4w-9t-nZr" secondAttribute="trailing" id="FjY-jJ-bM2"/>
-                                                <constraint firstItem="yn2-pC-ivn" firstAttribute="leading" secondItem="UZJ-Ap-dNU" secondAttribute="leading" id="HIC-dI-8kk"/>
                                                 <constraint firstItem="b4w-9t-nZr" firstAttribute="top" secondItem="UZJ-Ap-dNU" secondAttribute="top" id="OA6-zR-5QP"/>
-                                                <constraint firstAttribute="trailing" secondItem="yn2-pC-ivn" secondAttribute="trailing" id="g7w-xc-1CM"/>
+                                                <constraint firstAttribute="bottom" secondItem="7hH-6F-3Pg" secondAttribute="bottom" id="Xxw-Pi-v10"/>
+                                                <constraint firstAttribute="trailing" secondItem="7hH-6F-3Pg" secondAttribute="trailing" id="gvo-g6-m1z"/>
+                                                <constraint firstItem="7hH-6F-3Pg" firstAttribute="leading" secondItem="UZJ-Ap-dNU" secondAttribute="leading" id="mVA-fQ-leB"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.29446929690000001" green="0.30327916150000001" blue="0.49454557900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="customSize" width="252" height="248"/>
                                         <connections>
                                             <outlet property="cellImage" destination="b4w-9t-nZr" id="Dw1-q5-dGo"/>
-                                            <outlet property="cellText" destination="yn2-pC-ivn" id="EvD-UG-M9J"/>
+                                            <outlet property="cellText" destination="7hH-6F-3Pg" id="ZEO-tq-Opu"/>
                                             <segue destination="Nyk-ar-aq6" kind="show" id="SwI-Hq-Et7"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.29446929690000001" green="0.30327916150000001" blue="0.49454557900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="l1N-3u-9Lg"/>
                     </view>
-                    <navigationItem key="navigationItem" id="0gi-1c-9Yp"/>
+                    <navigationItem key="navigationItem" title="Sports" id="0gi-1c-9Yp"/>
                     <connections>
                         <outlet property="myHomeCollection" destination="x5E-sn-c8U" id="Idj-Pt-o9s"/>
                     </connections>
@@ -135,7 +139,7 @@
         <scene sceneID="PT3-RX-bLJ">
             <objects>
                 <tabBarController id="h40-cs-hxU" customClass="Tab" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="INV-ds-SBY">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="INV-ds-SBY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -153,11 +157,21 @@
         <scene sceneID="JXu-RW-Jet">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VdU-97-EGs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sports" id="H8K-ej-gP9"/>
+                    <tabBarItem key="tabBarItem" title="Sports" image="Ball25" id="H8K-ej-gP9">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZcJ-ew-SYb">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -225,6 +239,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Ball25" width="25" height="25"/>
         <image name="play.rectangle.fill" catalog="system" width="128" height="93"/>
     </resources>
 </document>

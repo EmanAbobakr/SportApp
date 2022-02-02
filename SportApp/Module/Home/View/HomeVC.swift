@@ -32,7 +32,9 @@ class HomeVC: UIViewController,HomeProtocol {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        title = "Sports"
+        //self.navigationItem.title = "Sports"
+        //self.tabBarItem.image = UIImage(named: "Ball25.jpeg")
+        
         setupCollectionView()
         myPresenter.getSports()
         animator()
@@ -90,6 +92,32 @@ class HomeVC: UIViewController,HomeProtocol {
         })
         myHomeCollection.reloadData()
     }
+    
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(origin: .zero, size: newSize)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
 
 }
 
@@ -106,16 +134,29 @@ extension HomeVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollecti
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellid", for: indexPath) as! HomeCollectionCell
         
         cell.cellText.text = resultView[indexPath.row].name
+        
         let url = URL(string: resultView[indexPath.row].imageURL)
-        cell.cellImage.kf.setImage(with: url)
-
+        
+        //cell.cellImage.kf.setImage(with: url)
+        //-------------
+        if let data = try? Data(contentsOf: url!) {
+            let image: UIImage = UIImage(data: data)!
+            
+            cell.cellImage.image = self.resizeImage(image: image , targetSize: CGSize(width: view.frame.size.width/2 - 2, height: view.frame.size.height/4 - 4))
+            
+        }
+       
+        //-----------
+        //cell.cellText.backgroundColor = UIColor(white: 1, alpha: 0.4)
+        
+        cell.layer.cornerRadius = 10
         return cell
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //print(UIScreen.main.bounds.height)
-        return CGSize(width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.height/3)
+        
+        return CGSize(width: view.frame.size.width/2 - 2 , height: view.frame.size.height/4 - 4 )
         
         
     }

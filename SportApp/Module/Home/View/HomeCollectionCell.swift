@@ -12,5 +12,6 @@ class HomeCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var cellImage: UIImageView!
     
-    @IBOutlet weak var cellText: UITextField!
+    @IBOutlet weak var cellText: UILabel!
+    
 }

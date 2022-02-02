@@ -25,6 +25,8 @@
 		81DADB4827A4094500543B4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81DADB4627A4094500543B4C /* LaunchScreen.storyboard */; };
 		81DADB5827A40C4A00543B4C /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DADB5727A40C4A00543B4C /* HomeVC.swift */; };
 		81DADB5C27A40FBC00543B4C /* HomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DADB5B27A40FBC00543B4C /* HomeCollectionCell.swift */; };
+		CA6450C527AAB90B00451A84 /* LightColors.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CA6450C427AAB90B00451A84 /* LightColors.jpeg */; };
+		CA6450C727AAB93700451A84 /* DarkColors.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CA6450C627AAB93700451A84 /* DarkColors.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		81DADB5727A40C4A00543B4C /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		81DADB5B27A40FBC00543B4C /* HomeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionCell.swift; sourceTree = "<group>"; };
 		BE72577204D785A53D9F49E6 /* Pods-SportApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportApp.release.xcconfig"; path = "Target Support Files/Pods-SportApp/Pods-SportApp.release.xcconfig"; sourceTree = "<group>"; };
+		CA6450C427AAB90B00451A84 /* LightColors.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LightColors.jpeg; sourceTree = "<group>"; };
+		CA6450C627AAB93700451A84 /* DarkColors.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DarkColors.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,7 @@
 				81DADB3D27A4094300543B4C /* SceneDelegate.swift */,
 				81DADB3F27A4094300543B4C /* ViewController.swift */,
 				81DADB4427A4094500543B4C /* Assets.xcassets */,
+				CA6450C327AAB8E000451A84 /* Colors */,
 				81DADB4927A4094500543B4C /* Info.plist */,
 			);
 			path = SportApp;
@@ -244,6 +249,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CA6450C327AAB8E000451A84 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				CA6450C627AAB93700451A84 /* DarkColors.jpeg */,
+				CA6450C427AAB90B00451A84 /* LightColors.jpeg */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -307,6 +321,8 @@
 				81DADB4827A4094500543B4C /* LaunchScreen.storyboard in Resources */,
 				81DADB4527A4094500543B4C /* Assets.xcassets in Resources */,
 				81DADB4327A4094300543B4C /* Main.storyboard in Resources */,
+				CA6450C727AAB93700451A84 /* DarkColors.jpeg in Resources */,
+				CA6450C527AAB90B00451A84 /* LightColors.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
