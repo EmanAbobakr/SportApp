@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 
-class APIService
+class APIService : APIServiceProtocol
 {
     func fetchResult(complitionHandler : @escaping (SportsResult?) -> Void)
     {
@@ -38,5 +38,31 @@ class APIService
            }
            
     }
+    func fetchDataFromAPI(complitionHandler : @escaping (SportsResult?, String?) -> Void, url: String) {
+        
+        let header : HTTPHeaders = [
+               .accept("application/json")
+           ]
+        _ = AF.request(url , headers: header)
+               .responseJSON{ (response) in
+                if response.value != nil
+                {
+                    do{
+                        let sportsResult = try JSONDecoder().decode(SportsResult.self, from: response.data!)
+                        //print(sportsResult.sports[0].strSport ?? "api empty ya Emy")
+                        complitionHandler(sportsResult, nil)
+                    }catch let error{
+                        print(error.localizedDescription)
+                        complitionHandler(nil, error.localizedDescription)
+                    }
+                }
+                else
+                {
+                    complitionHandler(nil, "Failed request")
+                    print("Failed request")
+                }
+           }
+    }
+    
 
 }

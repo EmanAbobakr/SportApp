@@ -157,7 +157,7 @@
         <scene sceneID="JXu-RW-Jet">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VdU-97-EGs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sports" image="Ball25" id="H8K-ej-gP9">
+                    <tabBarItem key="tabBarItem" title="Sports" image="sportscourt" catalog="system" id="H8K-ej-gP9">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -239,7 +239,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Ball25" width="25" height="25"/>
         <image name="play.rectangle.fill" catalog="system" width="128" height="93"/>
+        <image name="sportscourt" catalog="system" width="128" height="83"/>
     </resources>
 </document>

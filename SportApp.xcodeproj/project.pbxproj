@@ -27,6 +27,8 @@
 		81DADB5C27A40FBC00543B4C /* HomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DADB5B27A40FBC00543B4C /* HomeCollectionCell.swift */; };
 		CA6450C527AAB90B00451A84 /* LightColors.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CA6450C427AAB90B00451A84 /* LightColors.jpeg */; };
 		CA6450C727AAB93700451A84 /* DarkColors.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CA6450C627AAB93700451A84 /* DarkColors.jpeg */; };
+		CA6D625327ABEAC00043A92E /* APIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6D625227ABEAC00043A92E /* APIServiceProtocol.swift */; };
+		CA6D625727ABF58D0043A92E /* APILinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6D625627ABF58D0043A92E /* APILinks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		BE72577204D785A53D9F49E6 /* Pods-SportApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportApp.release.xcconfig"; path = "Target Support Files/Pods-SportApp/Pods-SportApp.release.xcconfig"; sourceTree = "<group>"; };
 		CA6450C427AAB90B00451A84 /* LightColors.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LightColors.jpeg; sourceTree = "<group>"; };
 		CA6450C627AAB93700451A84 /* DarkColors.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DarkColors.jpeg; sourceTree = "<group>"; };
+		CA6D625227ABEAC00043A92E /* APIServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceProtocol.swift; sourceTree = "<group>"; };
+		CA6D625627ABF58D0043A92E /* APILinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILinks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +207,8 @@
 			children = (
 				8116EDCC27A99BC000C1B456 /* APIService.swift */,
 				8116EDCE27A99BE500C1B456 /* SportsData.swift */,
+				CA6D625227ABEAC00043A92E /* APIServiceProtocol.swift */,
+				CA6D625627ABF58D0043A92E /* APILinks.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -378,6 +384,8 @@
 				81DADB5C27A40FBC00543B4C /* HomeCollectionCell.swift in Sources */,
 				8116EDCF27A99BE500C1B456 /* SportsData.swift in Sources */,
 				811EAFF827A9BBE9008226F3 /* LeaguesPresenter.swift in Sources */,
+				CA6D625327ABEAC00043A92E /* APIServiceProtocol.swift in Sources */,
+				CA6D625727ABF58D0043A92E /* APILinks.swift in Sources */,
 				811EAFFA27A9BC32008226F3 /* LeaguesVC.swift in Sources */,
 				81DADB4027A4094300543B4C /* ViewController.swift in Sources */,
 				8116EDD127A99FBC00C1B456 /* HomePresenter.swift in Sources */,
