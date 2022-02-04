@@ -24,14 +24,14 @@ struct LeaguesResultView
 class LeaguesVC: UITableViewController {
 
     let indicator = UIActivityIndicatorView(style: .large)
-    var myPresenter = LeaguesPresenter()
+    var myPresenter = RouterClass.presenter
     var resultView :[LeaguesResultView]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Leagues"
         setupTableView()
-        myPresenter.getLeagues()
+        //myPresenter?.getLeagues()
         animator()
         getData()
     }
@@ -48,6 +48,9 @@ class LeaguesVC: UITableViewController {
     {
         myPresenter.attachView(view: self)
         myPresenter.getLeagues()
+        print("In Leagues VC\(myPresenter.sportName ?? "")")
+        
+        
     }
     
     func setupTableView()

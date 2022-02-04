@@ -36,14 +36,17 @@ class HomeVC: UIViewController,HomeProtocol {
         //self.tabBarItem.image = UIImage(named: "Ball25.jpeg")
         
         setupCollectionView()
-        myPresenter.getSports()
+        //myPresenter.getSports()
         animator()
         getData()
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let leagueVC = segue.destination as! LeaguesVC
+        let selectedItemNum = myHomeCollection.indexPathsForSelectedItems![0][1]
+        print(resultView[selectedItemNum].name)
+        myPresenter.setSportName(sportName: resultView[selectedItemNum].name)
+        let _ = segue.destination as! LeaguesVC
     }
 
     /*

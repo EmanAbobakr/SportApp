@@ -13,6 +13,8 @@ class LeaguesPresenter
     var leaguesResult : [League]!
     let leaguesAPI = APILeaguesService()
     var myView : LeaguesProtocol!
+    var sportName : String!
+    
     
     func attachView(view: LeaguesProtocol)
     {
@@ -21,6 +23,7 @@ class LeaguesPresenter
     
     func getLeagues()
     {
+        print("hello from presenter leagues \(sportName)")
         leaguesAPI.fetchResult { [weak self](leaguesResult) in
             self?.leaguesResult = leaguesResult!.countrys
             //print(self?.leaguesResult[0].strSport)

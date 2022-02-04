@@ -21,6 +21,7 @@ class HomePresenter
     
     func getSports()
     {
+        
         sportsAPI.fetchResult { [weak self](sportsResult) in
             self?.sportsResult = sportsResult!.sports
             DispatchQueue.main.async {
@@ -28,5 +29,11 @@ class HomePresenter
                 self?.myView.stopAnimator()
             }
         }
+    }
+    func setSportName(sportName : String){
+        
+        //_ = RouterClass()
+        RouterClass.presenter.sportName = sportName
+        
     }
 }
