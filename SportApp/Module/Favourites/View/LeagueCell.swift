@@ -13,8 +13,18 @@ class LeagueCell: UITableViewCell {
     
     @IBOutlet weak var leagueImg: UIImageView!
     @IBOutlet weak var LeagueNameText: UITextField!
+    
+    
+    
     @IBAction func youtubeBtn(_ sender: UIButton) {
+        print("You clicked the btn")
+        //print(youtubeBtn.title(for: .normal))
+        //vcDelegation = LeaguesVC()
+        vcDelegation.cell(cell: self, didTapBtn: sender)
     }
+   
+    
+    var vcDelegation : customCellProtocol!
     
     override func awakeFromNib() {
         super.awakeFromNib()

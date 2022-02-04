@@ -14,6 +14,11 @@ protocol LeaguesProtocol {
     func reloadTableData()
 }
 
+protocol customCellProtocol {
+    func cell(cell: LeagueCell, didTapBtn: UIButton)
+    //func cell(_ cell: CustomCell, didTap button: UIButton)
+}
+
 struct LeaguesResultView
 {
     var name: String
@@ -26,6 +31,8 @@ class LeaguesVC: UITableViewController {
     let indicator = UIActivityIndicatorView(style: .large)
     var myPresenter = RouterClass.presenter
     var resultView :[LeaguesResultView]!
+    
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,15 +105,17 @@ extension LeaguesVC
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeagueCellid", for: indexPath) as! LeagueCell
 
         // Configure the cell...
-        /*
-        cell.leagueImg.image = UIImage(named: "f.jpg")
-        cell.LeagueNameText.text = "Helloooo"
-        */
+      
         cell.LeagueNameText.text = resultView[indexPath.row].name
         let url = URL(string: resultView[indexPath.row].imageURL)
-        cell.imageView?.kf.setImage(with: url)
+        cell.leagueImg.kf.setImage(with: url)
+        cell.vcDelegation = self
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("did select league row")
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -157,4 +166,19 @@ extension LeaguesVC
         // Pass the selected object to the new view controller.
     }
     */
+}
+
+extension LeaguesVC : customCellProtocol
+{
+    func cell(cell: LeagueCell, didTapBtn: UIButton) {
+        let rowIndex = self.tableView.indexPath(for: cell)
+        //print("You clicked btn at index \(rowIndex![1])")
+        //print("url= \(resultView[rowIndex![1]].ytURL)")
+        let youtubeUrl = URL(string: "https://"+resultView[rowIndex![1]].ytURL)!
+        UIApplication.shared.open(youtubeUrl)
+       
+
+
+    }
+    
 }

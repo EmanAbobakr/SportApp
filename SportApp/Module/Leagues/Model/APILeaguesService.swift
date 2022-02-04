@@ -11,13 +11,13 @@ import Alamofire
 
 class APILeaguesService
 {
-    func fetchResult(complitionHandler : @escaping (LeaguesResult?) -> Void)
+    func fetchResult(complitionHandler : @escaping (LeaguesResult?) -> Void , url: String)
     {
         let header : HTTPHeaders = [
                .accept("application/json")
            ]
-        let strURL = "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?s=Soccer"
-        _ = AF.request(strURL , headers: header)
+        //let strURL = "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?s=Soccer"
+        _ = AF.request(url , headers: header)
                .responseJSON{ (response) in
                 if response.value != nil
                 {
