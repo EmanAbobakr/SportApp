@@ -12,8 +12,7 @@ class LeagueCell: UITableViewCell {
     
     
     @IBOutlet weak var leagueImg: UIImageView!
-    @IBOutlet weak var LeagueNameText: UITextField!
-    
+    @IBOutlet weak var leagueNameText: UILabel!
     
     
     @IBAction func youtubeBtn(_ sender: UIButton) {

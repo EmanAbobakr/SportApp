@@ -99,7 +99,7 @@ extension LeaguesVC
 
         // Configure the cell...
       
-        cell.LeagueNameText.text = resultView[indexPath.row].name
+        cell.leagueNameText.text = resultView[indexPath.row].name
         let url = URL(string: resultView[indexPath.row].imageURL)
         cell.leagueImg.kf.setImage(with: url)
         cell.vcDelegation = self
@@ -109,6 +109,12 @@ extension LeaguesVC
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("did select league row")
+        print("first: \(Date().timeIntervalSinceNow)")
+        print("second: \(Calendar.current)")
+        print("third: \(Date())")
+        //We want to make sure this obj is created in a right way
+        let detailsVC = LeaguesDetailsVC()
+        self.present(detailsVC, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

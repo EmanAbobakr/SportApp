@@ -1,54 +1,46 @@
 //
-//  FavouritesVC.swift
+//  LeaguesDetailsVC.swift
 //  SportApp
 //
-//  Created by EmyAbobakr on 1/28/22.
+//  Created by EmyAbobakr on 2/5/22.
 //  Copyright © 2022 EmyAbobakr. All rights reserved.
 //
 
 import UIKit
 
-class FavouritesVC: UITableViewController {
+class LeaguesDetailsVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
 
-    }
-    
-    func setupTableView()
-    {
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return 0
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LeagueCellid", for: indexPath) as! LeagueCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
-        cell.leagueImg.image = UIImage(named: "f.jpg")
-        cell.leagueNameText.text = "Helloooo"
 
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
-    
+    */
 
     /*
     // Override to support conditional editing of the table view.
