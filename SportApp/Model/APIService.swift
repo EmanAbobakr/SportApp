@@ -12,18 +12,18 @@ import Alamofire
 
 class APIService : APIServiceProtocol
 {
-    func fetchResult(complitionHandler : @escaping (SportsResult?) -> Void)
+    func fetchDataFromAPI<T: Decodable>(url: String, responseClass: T.Type, complitionHandler : @escaping (T?) -> Void)
     {
         let header : HTTPHeaders = [
                .accept("application/json")
            ]
-        let strURL = "https://www.thesportsdb.com/api/v1/json/2/all_sports.php"
-        _ = AF.request(strURL , headers: header)
+        //let strURL = "https://www.thesportsdb.com/api/v1/json/2/all_sports.php"
+        _ = AF.request(url , headers: header)
                .responseJSON{ (response) in
                 if response.value != nil
                 {
                     do{
-                        let sportsResult = try JSONDecoder().decode(SportsResult.self, from: response.data!)
+                        let sportsResult = try JSONDecoder().decode(T.self, from: response.data!)
                         //print(sportsResult.sports[0].strSport ?? "api empty ya Emy")
                         complitionHandler(sportsResult)
                     }catch let error{
@@ -36,33 +36,6 @@ class APIService : APIServiceProtocol
                     print("Failed request")
                 }
            }
-           
     }
-    func fetchDataFromAPI(complitionHandler : @escaping (SportsResult?, String?) -> Void, url: String) {
-        
-        let header : HTTPHeaders = [
-               .accept("application/json")
-           ]
-        _ = AF.request(url , headers: header)
-               .responseJSON{ (response) in
-                if response.value != nil
-                {
-                    do{
-                        let sportsResult = try JSONDecoder().decode(SportsResult.self, from: response.data!)
-                        //print(sportsResult.sports[0].strSport ?? "api empty ya Emy")
-                        complitionHandler(sportsResult, nil)
-                    }catch let error{
-                        print(error.localizedDescription)
-                        complitionHandler(nil, error.localizedDescription)
-                    }
-                }
-                else
-                {
-                    complitionHandler(nil, "Failed request")
-                    print("Failed request")
-                }
-           }
-    }
-    
 
 }

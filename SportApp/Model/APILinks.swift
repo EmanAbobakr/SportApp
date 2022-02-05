@@ -8,26 +8,9 @@
 
 import Foundation
 
-enum Links {
-    case sports
-    case leagues
-    case teams
+enum Links : String{
+    case sports = "https://www.thesportsdb.com/api/v1/json/2/all_sports.php"
+    case leagues = "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?s="
+    
 }
 
-class APILinks {
-    
-    func getLink(linkName: Links) -> String {
-        let strLink: String?
-        switch linkName {
-        case .sports:
-            strLink = "https://www.thesportsdb.com/api/v1/json/2/all_sports.php"
-        case .leagues:
-            strLink = "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?s="
-        case .teams:
-            strLink = ""
-        default:
-            strLink = ""
-        }
-        return strLink ?? ""
-    }
-}

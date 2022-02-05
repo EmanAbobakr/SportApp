@@ -16,7 +16,6 @@ protocol LeaguesProtocol {
 
 protocol customCellProtocol {
     func cell(cell: LeagueCell, didTapBtn: UIButton)
-    //func cell(_ cell: CustomCell, didTap button: UIButton)
 }
 
 struct LeaguesResultView
@@ -33,16 +32,13 @@ class LeaguesVC: UITableViewController {
     var resultView :[LeaguesResultView]!
     
         
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Leagues"
         setupTableView()
-        //myPresenter?.getLeagues()
         animator()
         getData()
     }
-    
     
     func animator()
     {
@@ -51,13 +47,12 @@ class LeaguesVC: UITableViewController {
         indicator.startAnimating()
             
     }
+    
     func getData()
     {
         myPresenter.attachView(view: self)
         myPresenter.getLeagues()
         print("In Leagues VC\(myPresenter.sportName ?? "")")
-        
-        
     }
     
     func setupTableView()
@@ -65,8 +60,6 @@ class LeaguesVC: UITableViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }
-
-    
 
 }
 
@@ -172,13 +165,8 @@ extension LeaguesVC : customCellProtocol
 {
     func cell(cell: LeagueCell, didTapBtn: UIButton) {
         let rowIndex = self.tableView.indexPath(for: cell)
-        //print("You clicked btn at index \(rowIndex![1])")
-        //print("url= \(resultView[rowIndex![1]].ytURL)")
         let youtubeUrl = URL(string: "https://"+resultView[rowIndex![1]].ytURL)!
         UIApplication.shared.open(youtubeUrl)
-       
-
-
     }
     
 }

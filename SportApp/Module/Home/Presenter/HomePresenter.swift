@@ -10,8 +10,10 @@ import Foundation
 
 class HomePresenter
 {
+    
     var sportsResult : [Sport]!
-    var sportsAPI = APIService()
+    //var sportsAPI = APIService()
+    var sportsAPI : APIServiceProtocol = APIService()
     var myView : HomeProtocol!
     
     func attachView(view: HomeProtocol)
@@ -21,8 +23,7 @@ class HomePresenter
     
     func getSports()
     {
-        
-        sportsAPI.fetchResult { [weak self](sportsResult) in
+        sportsAPI.fetchDataFromAPI(url: Links.sports.rawValue, responseClass: SportsResult.self) { [weak self](sportsResult) in
             self?.sportsResult = sportsResult!.sports
             DispatchQueue.main.async {
                 self?.myView.reloadCollectionData()

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol APIServiceProtocol {
-    func fetchDataFromAPI(complitionHandler : @escaping (SportsResult?, String?) -> Void, url: String)
+    func fetchDataFromAPI<T: Decodable>(url: String, responseClass: T.Type, complitionHandler : @escaping (T?) -> Void)
 }

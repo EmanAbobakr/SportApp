@@ -11,7 +11,8 @@ import Foundation
 class LeaguesPresenter
 {
     var leaguesResult : [League]!
-    let leaguesAPI = APILeaguesService()
+    //let leaguesAPI = APILeaguesService()
+    let leaguesAPI : APIServiceProtocol = APIService()
     var myView : LeaguesProtocol!
     var sportName : String!
     
@@ -23,22 +24,14 @@ class LeaguesPresenter
     
     func getLeagues()
     {
-        print("hello from presenter leagues \(sportName)")
-//        leaguesAPI.fetchResult { [weak self](leaguesResult) in
-//            self?.leaguesResult = leaguesResult!.countrys
-//            //print(self?.leaguesResult[0].strSport)
-//            DispatchQueue.main.async {
-//                self?.myView.reloadTableData()
-//                self?.myView.stopAnimator()
-//            }
-//        }
-        leaguesAPI.fetchResult(complitionHandler: { [weak self](leaguesResult) in
+        leaguesAPI.fetchDataFromAPI(url: (Links.leagues.rawValue + sportName), responseClass: LeaguesResult.self) { [weak self](leaguesResult) in
             self?.leaguesResult = leaguesResult!.countrys
             DispatchQueue.main.async {
                 self?.myView.reloadTableData()
                 self?.myView.stopAnimator()
-                
             }
-        }, url: "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?s="+sportName)
+        }
+        
+        
     }
 }
