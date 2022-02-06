@@ -25,6 +25,7 @@ class LeaguesDetailsVC: UITableViewController {
     
 override func viewDidLoad() {
         super.viewDidLoad()
+    //title = "League's Details"
         animator()
         getData()
         setupTableView()
