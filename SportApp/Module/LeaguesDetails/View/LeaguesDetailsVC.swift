@@ -20,15 +20,12 @@ class LeaguesDetailsVC: UITableViewController {
     var myPresenter = RouterDetails.presenter
     var resultView :[String]!
     
-
-    @IBOutlet weak var teamsCollectionView: UICollectionView!
-    
 override func viewDidLoad() {
         super.viewDidLoad()
         animator()
         getData()
         setupTableView()
-        setupCollectionView()
+        //setupCollectionView()
         //myPresenter.printLeague()
     }
     
@@ -52,10 +49,10 @@ override func viewDidLoad() {
            self.tableView.delegate = self
            self.tableView.dataSource = self
        }
-    func setupCollectionView() {
-        self.teamsCollectionView.delegate = self
-        self.teamsCollectionView.dataSource = self
-    }
+//    func setupCollectionView() {
+//        self.teamsCollectionView.delegate = self
+//        self.teamsCollectionView.dataSource = self
+//    }
 }
 
 extension LeaguesDetailsVC : LeaguesDetailsProtocol {
@@ -69,30 +66,47 @@ extension LeaguesDetailsVC : LeaguesDetailsProtocol {
         })
         //print(resultView ?? "no data")
        self.tableView.reloadData()
-        self.teamsCollectionView.reloadData()
+        //self.teamsCollectionView.reloadData()
     }
 }
 
 extension LeaguesDetailsVC {
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 10
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 1
+//    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 3
+//    }
 
     
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return CGFloat(292)
+//    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
-        // Configure the cell...
-        cell.textLabel?.text = "Hello from cell"
+        
+        if indexPath.row == 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "upcomingTableCellID", for: indexPath) as! UITableViewCell
+            
+            return cell
+        }
+        else if indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "latestTableCellID", for: indexPath) as! UITableViewCell
+            
+            return cell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "teamsTableCellID", for: indexPath) as! TeamsTableViewCell
+        
+        cell.teamsStrImages = resultView
+        cell.teamsCollectionView.tag = indexPath.row
+        
         return cell
+        
+        
     }
     
 
@@ -141,19 +155,19 @@ extension LeaguesDetailsVC {
     }
     */
 }
-extension LeaguesDetailsVC :UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return resultView.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCellID", for: indexPath) as! TeamCell
-        let imageURL = URL(string: resultView[indexPath.row])
-        cell.teamImage.kf.setImage(with: imageURL)
-        return cell
-    }
-    
-    
-}
+//extension LeaguesDetailsVC :UICollectionViewDelegate, UICollectionViewDataSource {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return resultView.count ?? 0
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCellID", for: indexPath) as! TeamCell
+//        let imageURL = URL(string: resultView[indexPath.row])
+//        cell.teamImage.kf.setImage(with: imageURL)
+//        return cell
+//    }
+//
+//
+//}
 
 

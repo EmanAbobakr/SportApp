@@ -109,7 +109,8 @@ extension LeaguesVC
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //We want to make sure this obj is created in a right way
-        let detailsVC = LeaguesDetailsVC()
+        //let detailsVC = LeaguesDetailsVC()
+        let detailsVC = self.storyboard?.instantiateViewController(identifier: "LeaguesDetailsVCID") as! LeaguesDetailsVC
         myPresenter.setLeagueName(leagueName: resultView[indexPath.row].name)
         //resultView[indexPath.row]
         self.present(detailsVC, animated: true, completion: nil)
