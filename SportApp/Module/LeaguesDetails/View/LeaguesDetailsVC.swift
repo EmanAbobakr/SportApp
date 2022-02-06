@@ -7,40 +7,94 @@
 //
 
 import UIKit
+import Kingfisher
+
+protocol LeaguesDetailsProtocol {
+    func stopAnimator()
+    func reloadTableData()
+}
 
 class LeaguesDetailsVC: UITableViewController {
 
-    override func viewDidLoad() {
+    let indicator = UIActivityIndicatorView(style: .large)
+    var myPresenter = RouterDetails.presenter
+    var resultView :[String]!
+    
+
+    @IBOutlet weak var teamsCollectionView: UICollectionView!
+    
+override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        animator()
+        getData()
+        setupTableView()
+        setupCollectionView()
+        //myPresenter.printLeague()
     }
+    
+     func animator()
+       {
+           indicator.center = self.view.center
+           self.view.addSubview(indicator)
+           indicator.startAnimating()
+               
+       }
+       
+       func getData()
+       {
+           myPresenter.attachView(view: self)
+           myPresenter.getTeams()
+           //print("In Leagues VC\(myPresenter.leagueName ?? "")")
+       }
+       
+       func setupTableView()
+       {
+           self.tableView.delegate = self
+           self.tableView.dataSource = self
+       }
+    func setupCollectionView() {
+        self.teamsCollectionView.delegate = self
+        self.teamsCollectionView.dataSource = self
+    }
+}
 
+extension LeaguesDetailsVC : LeaguesDetailsProtocol {
+    func stopAnimator() {
+        indicator.stopAnimating()
+    }
+       
+    func reloadTableData() {
+        resultView = myPresenter.teamsResult.map({ (item) -> String in
+            return item.strTeamBadge
+        })
+        //print(resultView ?? "no data")
+       self.tableView.reloadData()
+        self.teamsCollectionView.reloadData()
+    }
+}
+
+extension LeaguesDetailsVC {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 10
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         // Configure the cell...
-
+        cell.textLabel?.text = "Hello from cell"
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -58,7 +112,7 @@ class LeaguesDetailsVC: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
@@ -86,5 +140,20 @@ class LeaguesDetailsVC: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
+extension LeaguesDetailsVC :UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return resultView.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCellID", for: indexPath) as! TeamCell
+        let imageURL = URL(string: resultView[indexPath.row])
+        cell.teamImage.kf.setImage(with: imageURL)
+        return cell
+    }
+    
+    
+}
+
+

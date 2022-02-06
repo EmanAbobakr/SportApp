@@ -108,12 +108,10 @@ extension LeaguesVC
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("did select league row")
-        print("first: \(Date().timeIntervalSinceNow)")
-        print("second: \(Calendar.current)")
-        print("third: \(Date())")
         //We want to make sure this obj is created in a right way
         let detailsVC = LeaguesDetailsVC()
+        myPresenter.setLeagueName(leagueName: resultView[indexPath.row].name)
+        //resultView[indexPath.row]
         self.present(detailsVC, animated: true, completion: nil)
     }
     

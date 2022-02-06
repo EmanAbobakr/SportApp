@@ -15,6 +15,7 @@ class LeaguesPresenter
     let leaguesAPI : APIServiceProtocol = APIService()
     var myView : LeaguesProtocol!
     var sportName : String!
+    var leagueName : String!
     
     
     func attachView(view: LeaguesProtocol)
@@ -24,14 +25,17 @@ class LeaguesPresenter
     
     func getLeagues()
     {
-        leaguesAPI.fetchDataFromAPI(url: (Links.leagues.rawValue + sportName), responseClass: LeaguesResult.self) { [weak self](leaguesResult) in
+        leaguesAPI.fetchDataFromAPI(url: (Links.leagues.rawValue + sportName), param: nil, responseClass: LeaguesResult.self) { [weak self](leaguesResult) in
             self?.leaguesResult = leaguesResult!.countrys
             DispatchQueue.main.async {
                 self?.myView.reloadTableData()
                 self?.myView.stopAnimator()
             }
         }
-        
+    }
+    func setLeagueName(leagueName : String){
+        RouterDetails.presenter.leagueName = leagueName
+        print("hello from set name in leagues presenter \(RouterDetails.presenter.leagueName)")
         
     }
 }
