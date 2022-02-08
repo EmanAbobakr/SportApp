@@ -35,4 +35,9 @@ class LeaguesDetailsPresenter {
     func prepareLeagueName(leagueName: String) -> String {
         return leagueName.replacingOccurrences(of: " ", with: "_")
     }
+    func setSelectedTeam(selectedTeamIndex: Int) {
+        let team = teamsResult[selectedTeamIndex]
+        RouterTeamDetails.presenter.selectedTeam = team
+        
+    }
 }

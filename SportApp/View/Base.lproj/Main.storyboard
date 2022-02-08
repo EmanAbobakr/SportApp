@@ -270,17 +270,88 @@
         <!--Team DetailsVC-->
         <scene sceneID="AMK-21-9iV">
             <objects>
-                <viewController id="oMU-hK-OVT" customClass="TeamDetailsVC" customModule="SportApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeamDetailsVC" id="oMU-hK-OVT" customClass="TeamDetailsVC" customModule="SportApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cdy-n1-uU5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="df4-o2-8zt">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Team's Details" id="fk8-Og-RCb">
+                                        <barButtonItem key="leftBarButtonItem" title="back" image="arrow.left" catalog="system" id="9JY-hx-qr8">
+                                            <connections>
+                                                <action selector="backButtonAction:" destination="oMU-hK-OVT" id="qqt-zs-6lR"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBM-TM-DNK">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WrO-Gl-Ibf">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="717"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="gFC-7Y-HJ1">
+                                                <rect key="frame" x="8" y="8" width="398" height="701"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="f.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="tbq-Za-EKg">
+                                                        <rect key="frame" x="0.0" y="0.0" width="398" height="200"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMp-Xx-TBe">
+                                                        <rect key="frame" x="0.0" y="206" width="398" height="243.5"/>
+                                                        <mutableString key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</mutableString>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="f.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="j0B-4K-5iU">
+                                                        <rect key="frame" x="0.0" y="455.5" width="398" height="245.5"/>
+                                                    </imageView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="gFC-7Y-HJ1" secondAttribute="trailing" constant="8" id="QhM-Z8-NeY"/>
+                                            <constraint firstItem="gFC-7Y-HJ1" firstAttribute="leading" secondItem="WrO-Gl-Ibf" secondAttribute="leading" constant="8" id="eG2-IK-9y0"/>
+                                            <constraint firstAttribute="bottom" secondItem="gFC-7Y-HJ1" secondAttribute="bottom" constant="8" id="fFe-0d-hcF"/>
+                                            <constraint firstItem="gFC-7Y-HJ1" firstAttribute="top" secondItem="WrO-Gl-Ibf" secondAttribute="top" constant="8" id="lhy-KI-Fkh"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.75153821239999996" green="0.53213515190000005" blue="0.58211048799999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="WrO-Gl-Ibf" secondAttribute="bottom" id="0gM-eN-d3K"/>
+                                    <constraint firstItem="WrO-Gl-Ibf" firstAttribute="height" secondItem="OBM-TM-DNK" secondAttribute="height" priority="250" id="9Tt-x8-Gmj"/>
+                                    <constraint firstItem="WrO-Gl-Ibf" firstAttribute="width" secondItem="OBM-TM-DNK" secondAttribute="width" id="T2h-yg-lXH"/>
+                                    <constraint firstAttribute="trailing" secondItem="WrO-Gl-Ibf" secondAttribute="trailing" id="cHm-Io-bCf"/>
+                                    <constraint firstItem="WrO-Gl-Ibf" firstAttribute="leading" secondItem="OBM-TM-DNK" secondAttribute="leading" id="e6R-bg-Te1"/>
+                                    <constraint firstItem="WrO-Gl-Ibf" firstAttribute="top" secondItem="OBM-TM-DNK" secondAttribute="top" id="lDi-5a-mjh"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="OBM-TM-DNK" firstAttribute="width" secondItem="Cdy-n1-uU5" secondAttribute="width" id="7Ic-fB-ecB"/>
+                            <constraint firstItem="OBM-TM-DNK" firstAttribute="trailing" secondItem="aVY-E7-wbK" secondAttribute="trailing" id="9zC-xf-t4O"/>
+                            <constraint firstItem="df4-o2-8zt" firstAttribute="leading" secondItem="aVY-E7-wbK" secondAttribute="leading" id="HRx-Sh-rgD"/>
+                            <constraint firstAttribute="bottom" secondItem="OBM-TM-DNK" secondAttribute="bottom" id="NR2-A5-Ovj"/>
+                            <constraint firstItem="OBM-TM-DNK" firstAttribute="top" secondItem="df4-o2-8zt" secondAttribute="bottom" id="Ox7-og-4RP"/>
+                            <constraint firstItem="df4-o2-8zt" firstAttribute="top" secondItem="aVY-E7-wbK" secondAttribute="top" id="XhP-3B-r8r"/>
+                            <constraint firstItem="OBM-TM-DNK" firstAttribute="height" secondItem="Cdy-n1-uU5" secondAttribute="height" multiplier="0.901786" id="bcf-Yt-AwQ"/>
+                            <constraint firstItem="tbq-Za-EKg" firstAttribute="height" secondItem="aVY-E7-wbK" secondAttribute="height" multiplier="0.244499" id="cc6-R2-QCF"/>
+                            <constraint firstItem="df4-o2-8zt" firstAttribute="trailing" secondItem="aVY-E7-wbK" secondAttribute="trailing" id="d03-k4-Ebl"/>
+                            <constraint firstItem="OBM-TM-DNK" firstAttribute="leading" secondItem="aVY-E7-wbK" secondAttribute="leading" id="lmY-qp-z6K"/>
+                            <constraint firstItem="j0B-4K-5iU" firstAttribute="height" secondItem="aVY-E7-wbK" secondAttribute="height" multiplier="0.3" id="sZI-yM-Qd8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="aVY-E7-wbK"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0vZ-Qq-3c8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3394" y="-520"/>
+            <point key="canvasLocation" x="3392.753623188406" y="-520.3125"/>
         </scene>
         <!--Favourites-->
         <scene sceneID="89V-1N-QCn">
@@ -340,6 +411,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.left" catalog="system" width="128" height="98"/>
+        <image name="f.jpg" width="615" height="615"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="play.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="sportscourt" catalog="system" width="128" height="83"/>

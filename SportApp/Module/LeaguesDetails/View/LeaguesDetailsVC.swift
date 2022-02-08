@@ -95,6 +95,13 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource{
         return cell
         
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let teamsDetailsVC = self.storyboard?.instantiateViewController(identifier: "TeamDetailsVC") as! TeamDetailsVC
+        //resultView[indexPath.row]
+        teamsDetailsVC.modalPresentationStyle = .fullScreen
+        myPresenter.setSelectedTeam(selectedTeamIndex: indexPath.row)
+        self.present(teamsDetailsVC, animated: true, completion: nil)
+    }
     
     
     

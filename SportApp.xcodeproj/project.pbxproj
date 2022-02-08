@@ -31,6 +31,8 @@
 		81DEEF9327B084F100E7D464 /* TeamDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DEEF9227B084F100E7D464 /* TeamDetailsVC.swift */; };
 		CA50D22527AF4104007F9D5C /* TeamsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA50D22427AF4104007F9D5C /* TeamsData.swift */; };
 		CA50D22727AF4408007F9D5C /* RouterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA50D22627AF4408007F9D5C /* RouterDetails.swift */; };
+		CA51613327B1CC3F005BCDA5 /* RouterTeamDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA51613227B1CC3F005BCDA5 /* RouterTeamDetails.swift */; };
+		CA51613527B1CCCA005BCDA5 /* TeamDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA51613427B1CCCA005BCDA5 /* TeamDetailsPresenter.swift */; };
 		CA6450C527AAB90B00451A84 /* LightColors.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CA6450C427AAB90B00451A84 /* LightColors.jpeg */; };
 		CA6450C727AAB93700451A84 /* DarkColors.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CA6450C627AAB93700451A84 /* DarkColors.jpeg */; };
 		CA6D625327ABEAC00043A92E /* APIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6D625227ABEAC00043A92E /* APIServiceProtocol.swift */; };
@@ -67,6 +69,8 @@
 		BE72577204D785A53D9F49E6 /* Pods-SportApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportApp.release.xcconfig"; path = "Target Support Files/Pods-SportApp/Pods-SportApp.release.xcconfig"; sourceTree = "<group>"; };
 		CA50D22427AF4104007F9D5C /* TeamsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsData.swift; sourceTree = "<group>"; };
 		CA50D22627AF4408007F9D5C /* RouterDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterDetails.swift; sourceTree = "<group>"; };
+		CA51613227B1CC3F005BCDA5 /* RouterTeamDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTeamDetails.swift; sourceTree = "<group>"; };
+		CA51613427B1CCCA005BCDA5 /* TeamDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TeamDetailsPresenter.swift; path = SportApp/Module/TeamDetails/View/TeamDetailsPresenter.swift; sourceTree = SOURCE_ROOT; };
 		CA6450C427AAB90B00451A84 /* LightColors.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LightColors.jpeg; sourceTree = "<group>"; };
 		CA6450C627AAB93700451A84 /* DarkColors.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DarkColors.jpeg; sourceTree = "<group>"; };
 		CA6D625227ABEAC00043A92E /* APIServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceProtocol.swift; sourceTree = "<group>"; };
@@ -294,8 +298,8 @@
 		81DEEF8E27B0849A00E7D464 /* TeamDetails */ = {
 			isa = PBXGroup;
 			children = (
-				81DEEF9127B084CD00E7D464 /* Model */,
-				81DEEF9027B084C200E7D464 /* Presenter */,
+				CA51612F27B1CC0B005BCDA5 /* Model */,
+				CA51613027B1CC15005BCDA5 /* Presenter */,
 				81DEEF8F27B084B100E7D464 /* View */,
 			);
 			path = TeamDetails;
@@ -307,20 +311,6 @@
 				81DEEF9227B084F100E7D464 /* TeamDetailsVC.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		81DEEF9027B084C200E7D464 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		81DEEF9127B084CD00E7D464 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		96FB2DF13F6CF849668425A7 /* Frameworks */ = {
@@ -338,6 +328,22 @@
 				CA50D22627AF4408007F9D5C /* RouterDetails.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CA51612F27B1CC0B005BCDA5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA51613227B1CC3F005BCDA5 /* RouterTeamDetails.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA51613027B1CC15005BCDA5 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CA51613427B1CCCA005BCDA5 /* TeamDetailsPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		CA6450C327AAB8E000451A84 /* Colors */ = {
@@ -473,6 +479,7 @@
 				CA6D625327ABEAC00043A92E /* APIServiceProtocol.swift in Sources */,
 				CA50D22727AF4408007F9D5C /* RouterDetails.swift in Sources */,
 				CA6D625727ABF58D0043A92E /* APILinks.swift in Sources */,
+				CA51613327B1CC3F005BCDA5 /* RouterTeamDetails.swift in Sources */,
 				811EAFFA27A9BC32008226F3 /* LeaguesVC.swift in Sources */,
 				81DADB4027A4094300543B4C /* ViewController.swift in Sources */,
 				8116EDD127A99FBC00C1B456 /* HomePresenter.swift in Sources */,
@@ -488,6 +495,7 @@
 				81D6414427AF25ED00094E36 /* LeaguesDetailsPresenter.swift in Sources */,
 				8116EDCD27A99BC000C1B456 /* APIService.swift in Sources */,
 				CA50D22527AF4104007F9D5C /* TeamsData.swift in Sources */,
+				CA51613527B1CCCA005BCDA5 /* TeamDetailsPresenter.swift in Sources */,
 				81DADB3E27A4094300543B4C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

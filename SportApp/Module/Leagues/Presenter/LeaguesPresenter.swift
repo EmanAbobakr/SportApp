@@ -35,7 +35,7 @@ class LeaguesPresenter
     }
     func setLeagueName(leagueName : String){
         RouterDetails.presenter.leagueName = leagueName
-        print("hello from set name in leagues presenter \(RouterDetails.presenter.leagueName)")
+        print("hello from set name in leagues presenter \(String(describing: RouterDetails.presenter.leagueName))")
         
     }
 }
