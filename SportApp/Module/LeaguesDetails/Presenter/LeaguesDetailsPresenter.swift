@@ -70,7 +70,7 @@ class LeaguesDetailsPresenter {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ssZ"
             dateFormatter.timeZone = TimeZone(identifier: "GMT")
-            var currentDate = dateFormatter.string(from: Date())
+            let currentDate = dateFormatter.string(from: Date())
 
             if apiDate! >= currentDate{
                 //print("Upcoming")

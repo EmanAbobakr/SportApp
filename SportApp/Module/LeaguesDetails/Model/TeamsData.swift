@@ -11,6 +11,7 @@ import Foundation
 class Team : Decodable{
     var idTeam: String!
     var strTeam: String!
+    var strTeamShort: String!
     var intFormedYear: String!
     var strSport: String!
     var strLeague: String!
