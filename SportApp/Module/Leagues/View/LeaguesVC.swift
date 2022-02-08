@@ -114,7 +114,7 @@ extension LeaguesVC
         let detailsVC = self.storyboard?.instantiateViewController(identifier: "LeaguesDetailsVCID") as! LeaguesDetailsVC
         myPresenter.setLeagueName(leagueName: resultView[indexPath.row].name)
         myPresenter.setLeagueID(leagueID: resultView[indexPath.row].id)
-        //detailsVC.modalPresentationStyle = .fullScreen
+        detailsVC.modalPresentationStyle = .fullScreen
         //resultView[indexPath.row]
         self.present(detailsVC, animated: true, completion: nil)
     }

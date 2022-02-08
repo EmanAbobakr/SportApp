@@ -196,11 +196,20 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
-                                <navigationItem title="League's Details :D" id="aiu-zK-p4F"/>
+                                <navigationItem title="League's Details :D" id="aiu-zK-p4F">
+                                    <barButtonItem key="leftBarButtonItem" title="back" image="arrow.left" catalog="system" id="wBK-hc-CLN">
+                                        <connections>
+                                            <action selector="backButtonAction:" destination="un5-pB-1mH" id="e6o-iO-4rx"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem key="rightBarButtonItem" image="suit.heart.fill" catalog="system" id="CM9-co-rGq">
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </barButtonItem>
+                                </navigationItem>
                             </items>
                         </navigationBar>
                         <sections>
-                            <tableViewSection headerTitle="Upcoming Events" id="8BI-fw-CNU">
+                            <tableViewSection headerTitle="UpcomingEvents" id="8BI-fw-CNU">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="263" id="b7B-9z-Q0E">
                                         <rect key="frame" x="0.0" y="72" width="414" height="263"/>
@@ -213,33 +222,33 @@
                                                     <rect key="frame" x="20" y="11" width="374" height="241"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JtV-U2-lDH">
-                                                        <size key="itemSize" width="111" height="136"/>
+                                                        <size key="itemSize" width="357" height="136"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamCellID" id="cSS-hc-pdl" customClass="TeamsCell" customModule="SportApp" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="52.5" width="111" height="136"/>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UpcomingCellID" id="cSS-hc-pdl" customClass="UpcomingCell" customModule="SportApp" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="52.5" width="357" height="136"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1bB-pC-gat">
-                                                                <rect key="frame" x="0.0" y="0.0" width="111" height="136"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="357" height="136"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QpN-ts-Fak">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="111" height="136"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="f.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="QpN-ts-Fak">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="357" height="136"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="QpN-ts-Fak" secondAttribute="trailing" id="76m-v7-koa"/>
-                                                                    <constraint firstItem="QpN-ts-Fak" firstAttribute="top" secondItem="1bB-pC-gat" secondAttribute="top" id="Ndd-cl-hX3"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="QpN-ts-Fak" secondAttribute="bottom" id="n2D-Q7-Ki0"/>
-                                                                    <constraint firstItem="QpN-ts-Fak" firstAttribute="leading" secondItem="1bB-pC-gat" secondAttribute="leading" id="qEk-X1-TYU"/>
+                                                                    <constraint firstItem="QpN-ts-Fak" firstAttribute="top" secondItem="1bB-pC-gat" secondAttribute="top" id="Ihr-34-LWP"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="QpN-ts-Fak" secondAttribute="trailing" id="KBD-9L-XU1"/>
+                                                                    <constraint firstItem="QpN-ts-Fak" firstAttribute="leading" secondItem="1bB-pC-gat" secondAttribute="leading" id="Nvd-fe-GO8"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="QpN-ts-Fak" secondAttribute="bottom" id="fPb-Cy-QR6"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
-                                                            <size key="customSize" width="111" height="136"/>
+                                                            <size key="customSize" width="357" height="136"/>
                                                             <connections>
-                                                                <outlet property="teamImage" destination="QpN-ts-Fak" id="TgI-OG-Blp"/>
+                                                                <outlet property="fakeImg" destination="QpN-ts-Fak" id="4Xf-PZ-ZGI"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -262,10 +271,63 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="LatestEvents" id="mqx-HU-EiT">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="263" id="Frh-yP-eGT">
+                                        <rect key="frame" x="0.0" y="391" width="414" height="263"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Frh-yP-eGT" id="L9H-Rg-1x5">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="263"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5CI-uG-igJ">
+                                                    <rect key="frame" x="20" y="11" width="374" height="241"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="akE-IS-9K2">
+                                                        <size key="itemSize" width="111" height="136"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LatestCellID" id="bKH-rw-MrD" customClass="LatestCell" customModule="SportApp" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="111" height="136"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5QA-uI-89H">
+                                                                <rect key="frame" x="0.0" y="0.0" width="111" height="136"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="m.png" translatesAutoresizingMaskIntoConstraints="NO" id="dKi-RF-y1e">
+                                                                        <rect key="frame" x="0.0" y="17" width="103" height="119"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    </imageView>
+                                                                </subviews>
+                                                            </collectionViewCellContentView>
+                                                            <size key="customSize" width="111" height="136"/>
+                                                            <connections>
+                                                                <outlet property="fakeImg" destination="dKi-RF-y1e" id="veV-LU-ifg"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5CI-uG-igJ" firstAttribute="top" secondItem="L9H-Rg-1x5" secondAttribute="topMargin" id="EVW-9v-dlS"/>
+                                                <constraint firstItem="5CI-uG-igJ" firstAttribute="leading" secondItem="L9H-Rg-1x5" secondAttribute="leadingMargin" id="G66-iG-PB5"/>
+                                                <constraint firstItem="5CI-uG-igJ" firstAttribute="trailing" secondItem="L9H-Rg-1x5" secondAttribute="trailingMargin" id="MhZ-lg-dXY"/>
+                                                <constraint firstItem="5CI-uG-igJ" firstAttribute="top" secondItem="L9H-Rg-1x5" secondAttribute="topMargin" id="TF3-lz-uAr"/>
+                                                <constraint firstItem="5CI-uG-igJ" firstAttribute="leading" secondItem="L9H-Rg-1x5" secondAttribute="leadingMargin" id="pb1-m8-XJF"/>
+                                                <constraint firstItem="5CI-uG-igJ" firstAttribute="trailing" secondItem="L9H-Rg-1x5" secondAttribute="trailingMargin" id="pkm-La-lmo"/>
+                                                <constraint firstItem="5CI-uG-igJ" firstAttribute="bottom" secondItem="L9H-Rg-1x5" secondAttribute="bottomMargin" id="yM0-R5-dxA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Teams" id="WZY-g5-aU2">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="263" id="Bjs-IL-zUB">
-                                        <rect key="frame" x="0.0" y="391" width="414" height="263"/>
+                                        <rect key="frame" x="0.0" y="710" width="414" height="263"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bjs-IL-zUB" id="wQa-Kl-xX1">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="263"/>
@@ -327,6 +389,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="latestCollectionView" destination="5CI-uG-igJ" id="fiw-3I-JgW"/>
                         <outlet property="teamsCollectionView" destination="hWR-a6-gbQ" id="Los-PO-tD6"/>
                         <outlet property="upcomingCollectionView" destination="m6e-Yq-Qbq" id="Wde-Cs-WXt"/>
                     </connections>
@@ -369,7 +432,7 @@
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMp-Xx-TBe">
                                                         <rect key="frame" x="0.0" y="206" width="398" height="243.5"/>
-                                                        <mutableString key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</mutableString>
+                                                        <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -482,7 +545,9 @@
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="f.jpg" width="615" height="615"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <image name="m.png" width="512" height="512"/>
         <image name="play.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="sportscourt" catalog="system" width="128" height="83"/>
+        <image name="suit.heart.fill" catalog="system" width="128" height="109"/>
     </resources>
 </document>

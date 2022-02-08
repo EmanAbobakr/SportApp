@@ -11,7 +11,9 @@ import Kingfisher
 
 protocol LeaguesDetailsProtocol {
     func stopAnimator()
-    func reloadTableData()
+    func reloadLatestCollectionData()
+    func reloadupComingCollectionData()
+    func reloadTeamsCollectionData() 
 }
 
 class LeaguesDetailsVC: UITableViewController {
@@ -22,18 +24,27 @@ class LeaguesDetailsVC: UITableViewController {
     
     
     @IBOutlet weak var upcomingCollectionView: UICollectionView!
+    @IBOutlet weak var latestCollectionView: UICollectionView!
     @IBOutlet weak var teamsCollectionView: UICollectionView!
+    
+    @IBAction func backButtonAction(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     
     
 override func viewDidLoad() {
         super.viewDidLoad()
-    //title = "League's Details"
-        animator()
-        getData()
-        setupTableView()
-        setupCollectionsView()
+    
+    setupTableView()
+    setupCollectionsView()
+    animator()
+    getData()
+    
+    
     //for just now
-    //myPresenter.getEvents()
+    myPresenter.getEvents()
     //myPresenter.printLeagueID()
         //myPresenter.printLeague()
     }
@@ -60,10 +71,17 @@ override func viewDidLoad() {
        }
     
         func setupCollectionsView() {
-            teamsCollectionView.delegate = self
-            teamsCollectionView.dataSource = self
+            
             upcomingCollectionView.delegate = self
             upcomingCollectionView.dataSource = self
+            
+            latestCollectionView.delegate = self
+            latestCollectionView.dataSource = self
+            
+            teamsCollectionView.delegate = self
+            teamsCollectionView.dataSource = self
+            
+                                  
         }
 }
 
@@ -72,7 +90,16 @@ extension LeaguesDetailsVC : LeaguesDetailsProtocol {
         indicator.stopAnimating()
     }
        
-    func reloadTableData() {
+    func reloadLatestCollectionData() {
+        
+    }
+    
+    func reloadupComingCollectionData() {
+        
+    }
+    
+    
+    func reloadTeamsCollectionData() {
         
         resultView = myPresenter.teamsResult.map({ (item) -> String in
             return item.strTeamBadge
@@ -83,34 +110,71 @@ extension LeaguesDetailsVC : LeaguesDetailsProtocol {
         
         //self.teamsCollectionView.reloadData()
     }
+    
+    
 }
 
 extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return resultView?.count ?? 0
+        if collectionView == self.upcomingCollectionView{
+            print("I am an upcoming count")
+            return 10
+        }
+            
+        else if collectionView == self.latestCollectionView{
+            print("I am a latest count")
+            return 7
+        }
+        
+        else{
+            print("I am a team count")
+            return resultView?.count ?? 0
+        }
 
-        //return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCellID", for: indexPath) as! TeamsCell
-        
-        
-        let resizingProcessor = ResizingImageProcessor(referenceSize: (cell.teamImage.frame.size), mode: .aspectFit)
-        let url = URL(string: resultView[indexPath.row])
-        cell.teamImage.kf.setImage(with: url, options: [.processor(resizingProcessor)])
-        
-        return cell
+        if collectionView == upcomingCollectionView{
+            print("I am an upcoming cell")
+            let cellA = collectionView.dequeueReusableCell(withReuseIdentifier: "UpcomingCellID", for: indexPath) as! UpcomingCell
+            
+            return cellA
+        }
+            
+        else if collectionView == self.latestCollectionView{
+            print("I am a latest cell")
+            let cellB = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestCellID", for: indexPath) as! LatestCell
+            
+            return cellB
+        }
+            
+            
+        else{
+            print("I am a team cell")
+
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCellID", for: indexPath) as! TeamsCell
+            
+            
+            let resizingProcessor = ResizingImageProcessor(referenceSize: (cell.teamImage.frame.size), mode: .aspectFit)
+            let url = URL(string: resultView[indexPath.row])
+            cell.teamImage.kf.setImage(with: url, options: [.processor(resizingProcessor)])
+            return cell
+        }
         
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let teamsDetailsVC = self.storyboard?.instantiateViewController(identifier: "TeamDetailsVC") as! TeamDetailsVC
-        //resultView[indexPath.row]
-        teamsDetailsVC.modalPresentationStyle = .fullScreen
-        myPresenter.setSelectedTeam(selectedTeamIndex: indexPath.row)
-        self.present(teamsDetailsVC, animated: true, completion: nil)
+        
+        if collectionView == teamsCollectionView {
+            teamsDetailsVC.modalPresentationStyle = .fullScreen
+            myPresenter.setSelectedTeam(selectedTeamIndex: indexPath.row)
+            self.present(teamsDetailsVC, animated: true, completion: nil)
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -122,5 +186,9 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
     
     
 }
+
+//extension LeaguesDetailsVC : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+//
+//}
 
 
