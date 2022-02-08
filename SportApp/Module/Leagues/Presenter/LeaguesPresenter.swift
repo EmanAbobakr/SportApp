@@ -38,4 +38,9 @@ class LeaguesPresenter
         print("hello from set name in leagues presenter \(RouterDetails.presenter.leagueName)")
         
     }
+    
+    func setLeagueID(leagueID : String){
+        RouterDetails.presenter.leagueID = leagueID
+        print("Hello from set ID in leagues presenter\(RouterDetails.presenter.leagueID)")
+    }
 }
