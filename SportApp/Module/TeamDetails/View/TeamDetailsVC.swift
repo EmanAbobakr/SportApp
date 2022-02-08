@@ -7,16 +7,32 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TeamDetailsVC: UIViewController {
     var team: Team!
     let myPresenter = RouterTeamDetails.presenter
+    
+    @IBOutlet weak var teamBadge: UIImageView!
+    @IBOutlet weak var teamName: UILabel!
+    @IBOutlet weak var teamSport: UILabel!
+    @IBOutlet weak var teamLeague: UILabel!
+    @IBOutlet weak var teamCountry: UILabel!
+    @IBOutlet weak var teamGender: UILabel!
+    @IBOutlet weak var teamInformedYear: UILabel!
+    @IBOutlet weak var teamStedium: UILabel!
+    @IBOutlet weak var teamDescription: UILabel!
+    @IBOutlet weak var teamWebsite: UILabel!
+    @IBOutlet weak var teamFacebook: UILabel!
+    @IBOutlet weak var teamTwitter: UILabel!
+    @IBOutlet weak var teamInstegram: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
         getTeam()
-        //any comment
+        setScreenData()
+        
         
         
     }
@@ -29,14 +45,26 @@ class TeamDetailsVC: UIViewController {
         team = myPresenter.selectedTeam
         print(team.strTeam ?? "")
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setScreenData() {
+        teamName.text = team.strTeam
+        let imageURL = URL(string: team.strTeamBadge)
+        
+        teamBadge.layer.cornerRadius = teamBadge.frame.height / 2
+        let resizingProcessor = ResizingImageProcessor(referenceSize: (teamBadge.frame.size), mode: .aspectFit)
+        
+        teamBadge.kf.setImage(with: imageURL, options: [.processor(resizingProcessor)])
+        teamSport.text = team.strSport
+        teamGender.text = team.strGender
+        teamLeague.text = team.strLeague
+        teamCountry.text = team.strCountry
+        teamStedium.text = team.strStadium
+        teamFacebook.text = team.strFacebook
+        teamInformedYear.text = team.intFormedYear
+        teamTwitter.text = team.strTwitter
+        teamInstegram.text = team.strInstagram
+        teamWebsite.text = team.strWebsite
+        teamDescription.text = team.strDescriptionEN
+        
     }
-    */
-
+    
 }
