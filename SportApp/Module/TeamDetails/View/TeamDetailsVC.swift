@@ -9,14 +9,26 @@
 import UIKit
 
 class TeamDetailsVC: UIViewController {
-
+    var team: Team!
+    let myPresenter = RouterTeamDetails.presenter
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        getTeam()
+        //any comment
+        
+        
     }
     
 
+    @IBAction func backButtonAction(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    func getTeam() {
+        team = myPresenter.selectedTeam
+        print(team.strTeam ?? "")
+    }
     /*
     // MARK: - Navigation
 

@@ -89,4 +89,9 @@ class LeaguesDetailsPresenter {
 //    func printLeagueID(){
 //        print("Hello from print league ID in leagues details presenter \(leagueID)")
 //    }
+    func setSelectedTeam(selectedTeamIndex: Int) {
+        let team = teamsResult[selectedTeamIndex]
+        RouterTeamDetails.presenter.selectedTeam = team
+        
+    }
 }
