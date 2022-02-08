@@ -73,8 +73,7 @@ extension LeaguesDetailsVC : LeaguesDetailsProtocol {
     }
        
     func reloadTableData() {
-        //////just for now
-        //////
+        
         resultView = myPresenter.teamsResult.map({ (item) -> String in
             return item.strTeamBadge
         })
@@ -88,7 +87,9 @@ extension LeaguesDetailsVC : LeaguesDetailsProtocol {
 
 extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return resultView?.count ?? 0
+
         //return 10
     }
     
