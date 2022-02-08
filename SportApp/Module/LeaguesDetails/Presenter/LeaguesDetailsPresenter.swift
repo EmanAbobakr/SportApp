@@ -28,9 +28,9 @@ class LeaguesDetailsPresenter {
         dataAPI.fetchDataFromAPI(url: (Links.events.rawValue + leagueID), param: nil, responseClass: EventsResult.self) { [weak self](eventsResult) in
             self?.eventsResult = eventsResult?.events
             DispatchQueue.main.async {
-                self?.myView.reloadTableData()
+                self?.myView.reloadupComingCollectionData()
                 self?.myView.stopAnimator()
-                self?.filterEventsBasedOnDate(eventsResult: self?.eventsResult)
+                //self?.filterEventsBasedOnDate(eventsResult: self?.eventsResult)
             }
         }
 //        if var er = eventsResult{
@@ -51,7 +51,7 @@ class LeaguesDetailsPresenter {
         dataAPI.fetchDataFromAPI(url: (Links.teams.rawValue), param: ["l":leagueName ?? ""], responseClass: TeamsResult.self) { [weak self](teamsResult) in
             self?.teamsResult = teamsResult?.teams
             DispatchQueue.main.async {
-                self?.myView.reloadTableData()
+                self?.myView.reloadTeamsCollectionData()
                 self?.myView.stopAnimator()
             }
         }
