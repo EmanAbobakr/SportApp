@@ -20,6 +20,8 @@ class LeaguesDetailsVC: UITableViewController {
     var myPresenter = RouterDetails.presenter
     var resultView :[String]!
     
+    
+    @IBOutlet weak var upcomingCollectionView: UICollectionView!
     @IBOutlet weak var teamsCollectionView: UICollectionView!
     
     
@@ -29,7 +31,10 @@ override func viewDidLoad() {
         animator()
         getData()
         setupTableView()
-        setupCollectionView()
+        setupCollectionsView()
+    //for just now
+    //myPresenter.getEvents()
+    //myPresenter.printLeagueID()
         //myPresenter.printLeague()
     }
     
@@ -54,9 +59,11 @@ override func viewDidLoad() {
            self.tableView.dataSource = self
        }
     
-        func setupCollectionView() {
+        func setupCollectionsView() {
             teamsCollectionView.delegate = self
             teamsCollectionView.dataSource = self
+            upcomingCollectionView.delegate = self
+            upcomingCollectionView.dataSource = self
         }
 }
 
@@ -66,6 +73,8 @@ extension LeaguesDetailsVC : LeaguesDetailsProtocol {
     }
        
     func reloadTableData() {
+        //////just for now
+        //////
         resultView = myPresenter.teamsResult.map({ (item) -> String in
             return item.strTeamBadge
         })
@@ -77,7 +86,7 @@ extension LeaguesDetailsVC : LeaguesDetailsProtocol {
     }
 }
 
-extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource{
+extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return resultView?.count ?? 0
         //return 10
@@ -87,15 +96,21 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCellID", for: indexPath) as! TeamsCell
         
+        
+        let resizingProcessor = ResizingImageProcessor(referenceSize: (cell.teamImage.frame.size), mode: .aspectFit)
         let url = URL(string: resultView[indexPath.row])
-        cell.teamImage.kf.setImage(with: url)
-        
-        
+        cell.teamImage.kf.setImage(with: url, options: [.processor(resizingProcessor)])
         
         return cell
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: view.frame.size.width/3 - 3 , height: view.frame.size.height/4 - 4 )
+        
+        
+    }
     
     
 }

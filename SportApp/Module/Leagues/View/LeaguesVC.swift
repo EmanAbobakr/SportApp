@@ -20,6 +20,7 @@ protocol customCellProtocol {
 
 struct LeaguesResultView
 {
+    var id: String
     var name: String
     var imageURL : String
     var ytURL : String
@@ -72,7 +73,7 @@ extension LeaguesVC: LeaguesProtocol
     func reloadTableData() {
         
         resultView = myPresenter.leaguesResult.map({ (item) -> LeaguesResultView in
-            return LeaguesResultView(name: item.strLeague ?? " ", imageURL: item.strBadge ?? " ", ytURL: item.strYoutube ?? " ")
+            return LeaguesResultView(id: item.idLeague ?? " ", name: item.strLeague ?? " ", imageURL: item.strBadge ?? " ", ytURL: item.strYoutube ?? " ")
         })
  
         self.tableView.reloadData()
@@ -112,6 +113,8 @@ extension LeaguesVC
         //let detailsVC = LeaguesDetailsVC()
         let detailsVC = self.storyboard?.instantiateViewController(identifier: "LeaguesDetailsVCID") as! LeaguesDetailsVC
         myPresenter.setLeagueName(leagueName: resultView[indexPath.row].name)
+        myPresenter.setLeagueID(leagueID: resultView[indexPath.row].id)
+        //detailsVC.modalPresentationStyle = .fullScreen
         //resultView[indexPath.row]
         self.present(detailsVC, animated: true, completion: nil)
     }

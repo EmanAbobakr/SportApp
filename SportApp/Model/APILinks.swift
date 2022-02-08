@@ -11,7 +11,7 @@ import Foundation
 enum Links : String{
     case sports = "https://www.thesportsdb.com/api/v1/json/2/all_sports.php"
     case leagues = "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?s="
-    case events = "https://www.thesportsdb.com/api/v1/json/2/eventsseason.php?id=4617&strStatus=null"
+    case events = "https://www.thesportsdb.com/api/v1/json/2/eventsseason.php?id="
     case teams = "https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php"
     //Albanian_Superliga
 }
