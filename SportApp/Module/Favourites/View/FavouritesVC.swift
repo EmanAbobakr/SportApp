@@ -7,13 +7,26 @@
 //
 
 import UIKit
+import CoreData
+import Kingfisher
 
 class FavouritesVC: UITableViewController {
+    
+    var favourites : [NSManagedObject]! = []
+    var coredataManager : CoredataManagerVSFavourites = CoredataManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        favourites = coredataManager.fetchFavouriteLeagues(fetchedData: &favourites)
         setupTableView()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        favourites = coredataManager.fetchFavouriteLeagues(fetchedData: &favourites)
+
+        tableView.reloadData()
     }
     
     func setupTableView()
@@ -31,18 +44,29 @@ class FavouritesVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return favourites?.count ?? 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LeagueCellid", for: indexPath) as! LeagueCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LeagueCellID", for: indexPath) as! LeagueCell
 
         // Configure the cell...
-        cell.leagueImg.image = UIImage(named: "f.jpg")
-        cell.leagueNameText.text = "Helloooo"
-
+        //cell.myLabel1.text = myArr?[indexPath.row].value(forKey: "title") as? String
+        cell.leagueNameText.text = favourites[indexPath.row].value(forKey: "leagueName") as? String
+        let url = URL(string: (favourites[indexPath.row].value(forKey: "leagueImgURL") as? String)!)
+        cell.leagueImg.kf.setImage(with: url)
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == .delete)
+        {
+            coredataManager.deleteFavouriteLeague(deletedData: favourites[indexPath.row])
+            favourites.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

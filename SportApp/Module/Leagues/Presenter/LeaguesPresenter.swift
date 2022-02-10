@@ -14,8 +14,9 @@ class LeaguesPresenter
     //let leaguesAPI = APILeaguesService()
     let leaguesAPI : APIServiceProtocol = APIService()
     var myView : LeaguesProtocol!
+    var leagueData : LeaguesResultView!
     var sportName : String!
-    var leagueName : String!
+    //var leagueName : String!
     
     
     func attachView(view: LeaguesProtocol)
@@ -33,14 +34,20 @@ class LeaguesPresenter
             }
         }
     }
-    func setLeagueName(leagueName : String){
-        RouterDetails.presenter.leagueName = leagueName
-        print("hello from set name in leagues presenter \(String(describing: RouterDetails.presenter.leagueName))")
-        
+//    func setLeagueName(leagueName : String){
+//        RouterDetails.presenter.leagueName = leagueName
+//        print("hello from set name in leagues presenter \(String(describing: RouterDetails.presenter.leagueName))")
+//
+//    }
+//
+//    func setLeagueID(leagueID : String){
+//        RouterDetails.presenter.leagueID = leagueID
+//        print("Hello from set ID in leagues presenter\(RouterDetails.presenter.leagueID)")
+//    }
+    
+    func setLeagueData(leagueData : LeaguesResultView){
+        RouterDetails.presenter.leagueData = leagueData
     }
     
-    func setLeagueID(leagueID : String){
-        RouterDetails.presenter.leagueID = leagueID
-        print("Hello from set ID in leagues presenter\(RouterDetails.presenter.leagueID)")
-    }
+    
 }
