@@ -13,7 +13,8 @@ protocol LeaguesDetailsProtocol {
     func stopAnimator()
     func reloadLatestCollectionData()
     func reloadupComingCollectionData()
-    func reloadTeamsCollectionData() 
+    func reloadTeamsCollectionData()
+    func setupHeartIcon(flag: Bool)
 }
 
 class LeaguesDetailsVC: UITableViewController {
@@ -23,6 +24,29 @@ class LeaguesDetailsVC: UITableViewController {
     var resultView :[String]!
     
     
+    
+    
+    @IBAction func favouriteIconAction(_ sender: UIBarButtonItem) {
+        
+        if sender.tintColor == UIColor.red{
+//            print("convert red to gray")
+//            sender.tintColor = UIColor.lightGray
+            print("sandra1")
+            myPresenter.deleteFavouriteLeague()
+           
+        }
+        else{
+//            print("convert red to red")
+//            sender.tintColor = UIColor.red
+             print("1-leagues details vc call the add func from presenter")
+             myPresenter.addFavouriteLeague()
+        }
+        //coredataManager.storeFavouriteLeague(data: myPresenter.leagueData)
+        
+    }
+    
+    @IBOutlet weak var favouriteIcon: UIBarButtonItem!
+    
     @IBOutlet weak var upcomingCollectionView: UICollectionView!
     @IBOutlet weak var latestCollectionView: UICollectionView!
     @IBOutlet weak var teamsCollectionView: UICollectionView!
@@ -31,16 +55,14 @@ class LeaguesDetailsVC: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
-    
-    
-override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-    
-    setupTableView()
-    setupCollectionsView()
-    animator()
-    getData()
+        
+        print("league's id from vc \(myPresenter.leagueData.id)")
+        setupTableView()
+        setupCollectionsView()
+        animator()
+        getData()
     
     
     //for just now
@@ -49,19 +71,19 @@ override func viewDidLoad() {
         //myPresenter.printLeague()
     }
     
-     func animator()
-       {
-           indicator.center = self.view.center
-           self.view.addSubview(indicator)
-           indicator.startAnimating()
-               
-       }
+    func animator(){
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        indicator.startAnimating()
+        
+    }
        
-       func getData()
-       {
+       func getData(){
            myPresenter.attachView(view: self)
            myPresenter.getTeams()
            //print("In Leagues VC\(myPresenter.leagueName ?? "")")
+        print("now i will check if this leagues favourite-call the fn from presenter")
+        myPresenter.checkIfFavourite()
        }
        
        func setupTableView()
@@ -80,12 +102,14 @@ override func viewDidLoad() {
             
             teamsCollectionView.delegate = self
             teamsCollectionView.dataSource = self
-            
                                   
         }
+    
+    
 }
 
 extension LeaguesDetailsVC : LeaguesDetailsProtocol {
+    
     func stopAnimator() {
         indicator.stopAnimating()
     }
@@ -109,6 +133,16 @@ extension LeaguesDetailsVC : LeaguesDetailsProtocol {
         self.teamsCollectionView.reloadData()
         
         //self.teamsCollectionView.reloadData()
+    }
+    
+    func setupHeartIcon(flag: Bool){
+        if flag{
+            
+            favouriteIcon.tintColor = UIColor.red
+        }
+        else{
+            favouriteIcon.tintColor = UIColor.lightGray
+        }
     }
     
     

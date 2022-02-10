@@ -204,6 +204,9 @@
                                     </barButtonItem>
                                     <barButtonItem key="rightBarButtonItem" image="suit.heart.fill" catalog="system" id="CM9-co-rGq">
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="favouriteIconAction:" destination="un5-pB-1mH" id="964-ed-7Pj"/>
+                                        </connections>
                                     </barButtonItem>
                                 </navigationItem>
                             </items>
@@ -389,6 +392,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="favouriteIcon" destination="CM9-co-rGq" id="GUq-t3-6JM"/>
                         <outlet property="latestCollectionView" destination="5CI-uG-igJ" id="fiw-3I-JgW"/>
                         <outlet property="teamsCollectionView" destination="hWR-a6-gbQ" id="Los-PO-tD6"/>
                         <outlet property="upcomingCollectionView" destination="m6e-Yq-Qbq" id="Wde-Cs-WXt"/>
@@ -607,7 +611,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LeagueCellid" rowHeight="148" id="LVT-4x-VHl" customClass="LeagueCell" customModule="SportApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LeagueCellID" rowHeight="148" id="LVT-4x-VHl" customClass="LeagueCell" customModule="SportApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="148"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LVT-4x-VHl" id="Po9-s4-Jev">

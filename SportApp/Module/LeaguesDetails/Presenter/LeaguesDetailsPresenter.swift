@@ -7,16 +7,17 @@
 //
 
 import Foundation
+import CoreData
 
 class LeaguesDetailsPresenter {
-    var leagueName : String!
-    var leagueID : String!
+    var leagueData : LeaguesResultView!
     var dataAPI : APIServiceProtocol = APIService()
     var eventsResult : [Event]!
     var upcomingResult : [Event]!
     var latest : [Event]!
     var teamsResult : [Team]!
     var myView : LeaguesDetailsProtocol!
+    var coredataManager : CoredataManagerVSLeagues = CoredataManager()
     
     func attachView(view: LeaguesDetailsProtocol)
     {
@@ -25,7 +26,7 @@ class LeaguesDetailsPresenter {
     
     func getEvents()
     {
-        dataAPI.fetchDataFromAPI(url: (Links.events.rawValue + leagueID), param: nil, responseClass: EventsResult.self) { [weak self](eventsResult) in
+        dataAPI.fetchDataFromAPI(url: (Links.events.rawValue + leagueData.id), param: nil, responseClass: EventsResult.self) { [weak self](eventsResult) in
             self?.eventsResult = eventsResult?.events
             DispatchQueue.main.async {
                 self?.myView.reloadupComingCollectionData()
@@ -48,7 +49,7 @@ class LeaguesDetailsPresenter {
     
     func getTeams()
     {
-        dataAPI.fetchDataFromAPI(url: (Links.teams.rawValue), param: ["l":leagueName ?? ""], responseClass: TeamsResult.self) { [weak self](teamsResult) in
+        dataAPI.fetchDataFromAPI(url: (Links.teams.rawValue), param: ["l":leagueData.name ?? ""], responseClass: TeamsResult.self) { [weak self](teamsResult) in
             self?.teamsResult = teamsResult?.teams
             DispatchQueue.main.async {
                 self?.myView.reloadTeamsCollectionData()
@@ -94,4 +95,35 @@ class LeaguesDetailsPresenter {
         RouterTeamDetails.presenter.selectedTeam = team
         
     }
+    
+    func checkIfFavourite(){
+        if coredataManager.searchForLeague(id: leagueData.id){
+            print("favourit league")
+        }
+        else{
+            print("unfavourite league")
+        }
+        print("league's id from presenter \(leagueData.id)")
+        
+        myView.setupHeartIcon(flag: coredataManager.searchForLeague(id: leagueData.id))
+    }
+    
+    func addFavouriteLeague(){
+        
+        print("2-leagues details presenter call the add func from coredata with id \(leagueData.id)")
+
+        coredataManager.storeFavouriteLeague(data: leagueData)
+        print("3-the heart become red")
+
+        myView.setupHeartIcon(flag: true)
+    }
+    
+    func deleteFavouriteLeague(){
+        
+        print("sandra2")
+        coredataManager.deleteFavouriteLeague(deletedData: leagueData)
+        print("sandra3")
+        myView.setupHeartIcon(flag: false)
+    }
+    
 }
