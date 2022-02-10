@@ -17,31 +17,33 @@ protocol LeaguesDetailsProtocol {
     func setupHeartIcon(flag: Bool)
 }
 
+struct UpcomingResultView{
+    var name : String?
+    var date : String?
+    var time : String?
+}
+
+struct LatestResultView{
+    var firstTeam : String?
+    var secondTeam : String?
+    var firstScore : String?
+    var secondScore : String?
+    var date : String?
+    var time : String?
+}
+
+
 class LeaguesDetailsVC: UITableViewController {
 
-    let indicator = UIActivityIndicatorView(style: .large)
-    var myPresenter = RouterDetails.presenter
-    var resultView :[String]!
-    
-    
-    
-    
     @IBAction func favouriteIconAction(_ sender: UIBarButtonItem) {
         
         if sender.tintColor == UIColor.red{
-//            print("convert red to gray")
-//            sender.tintColor = UIColor.lightGray
-            print("sandra1")
             myPresenter.deleteFavouriteLeague()
            
         }
         else{
-//            print("convert red to red")
-//            sender.tintColor = UIColor.red
-             print("1-leagues details vc call the add func from presenter")
              myPresenter.addFavouriteLeague()
         }
-        //coredataManager.storeFavouriteLeague(data: myPresenter.leagueData)
         
     }
     
@@ -55,18 +57,27 @@ class LeaguesDetailsVC: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+    let indicator = UIActivityIndicatorView(style: .large)
+    var myPresenter = RouterDetails.presenter
+    var upcomingResultView : [UpcomingResultView]!
+    var latestResultView : [LatestResultView]!
+    var teamsResultView :[String]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("league's id from vc \(myPresenter.leagueData.id)")
+        
+        animator()
         setupTableView()
         setupCollectionsView()
-        animator()
         getData()
+        sleep(2)
+        getEventsData()
     
     
     //for just now
-    myPresenter.getEvents()
+    //myPresenter.getEvents()
     //myPresenter.printLeagueID()
         //myPresenter.printLeague()
     }
@@ -77,33 +88,33 @@ class LeaguesDetailsVC: UITableViewController {
         indicator.startAnimating()
         
     }
-       
-       func getData(){
-           myPresenter.attachView(view: self)
-           myPresenter.getTeams()
-           //print("In Leagues VC\(myPresenter.leagueName ?? "")")
-        print("now i will check if this leagues favourite-call the fn from presenter")
+    func getData(){
+        myPresenter.attachView(view: self)
+        myPresenter.getTeams()
         myPresenter.checkIfFavourite()
        }
-       
-       func setupTableView()
-       {
-           self.tableView.delegate = self
-           self.tableView.dataSource = self
-       }
     
-        func setupCollectionsView() {
+    func getEventsData(){
+        myPresenter.getEvents()
+    }
+       
+    func setupTableView(){
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+    }
+    
+    func setupCollectionsView(){
             
-            upcomingCollectionView.delegate = self
-            upcomingCollectionView.dataSource = self
+        upcomingCollectionView.delegate = self
+        upcomingCollectionView.dataSource = self
             
-            latestCollectionView.delegate = self
-            latestCollectionView.dataSource = self
+        latestCollectionView.delegate = self
+        latestCollectionView.dataSource = self
             
-            teamsCollectionView.delegate = self
-            teamsCollectionView.dataSource = self
+        teamsCollectionView.delegate = self
+        teamsCollectionView.dataSource = self
                                   
-        }
+    }
     
     
 }
@@ -114,18 +125,25 @@ extension LeaguesDetailsVC : LeaguesDetailsProtocol {
         indicator.stopAnimating()
     }
        
-    func reloadLatestCollectionData() {
-        
-    }
     
     func reloadupComingCollectionData() {
-        
+        upcomingResultView = myPresenter.upcomingResult.map({ (item) -> UpcomingResultView in
+            return UpcomingResultView(name: item.strEvent, date: item.dateEvent, time: item.strTime)
+        })
+        self.tableView.reloadData()
+        self.teamsCollectionView.reloadData()
     }
     
+    func reloadLatestCollectionData() {
+        latestResultView = myPresenter.latestResult.map({ (item) -> LatestResultView in
+            return LatestResultView(firstTeam: item.strHomeTeam, secondTeam: item.strAwayTeam, firstScore: item.intHomeScore, secondScore: item.intAwayScore, date: item.dateEvent, time: item.strTime)
+        })
+        
+    }
     
     func reloadTeamsCollectionData() {
         
-        resultView = myPresenter.teamsResult.map({ (item) -> String in
+        teamsResultView = myPresenter.teamsResult.map({ (item) -> String in
             return item.strTeamBadge
         })
         //print(resultView ?? "no data")
@@ -154,7 +172,7 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
         
         if collectionView == self.upcomingCollectionView{
             print("I am an upcoming count")
-            return 10
+            return upcomingResultView?.count ?? 0
         }
             
         else if collectionView == self.latestCollectionView{
@@ -164,7 +182,7 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
         
         else{
             print("I am a team count")
-            return resultView?.count ?? 0
+            return teamsResultView?.count ?? 0
         }
 
     }
@@ -174,6 +192,9 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
         if collectionView == upcomingCollectionView{
             print("I am an upcoming cell")
             let cellA = collectionView.dequeueReusableCell(withReuseIdentifier: "UpcomingCellID", for: indexPath) as! UpcomingCell
+            cellA.eventName.text = upcomingResultView[indexPath.row].name
+            cellA.eventDate.text = upcomingResultView[indexPath.row].date
+            cellA.eventTime.text = upcomingResultView[indexPath.row].time
             
             return cellA
         }
@@ -193,7 +214,7 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
             
             
             let resizingProcessor = ResizingImageProcessor(referenceSize: (cell.teamImage.frame.size), mode: .aspectFit)
-            let url = URL(string: resultView[indexPath.row])
+            let url = URL(string: teamsResultView[indexPath.row])
             cell.teamImage.kf.setImage(with: url, options: [.processor(resizingProcessor)])
             return cell
         }
@@ -201,12 +222,15 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let teamsDetailsVC = self.storyboard?.instantiateViewController(identifier: "TeamDetailsVC") as! TeamDetailsVC
-        
-        if collectionView == teamsCollectionView {
-            teamsDetailsVC.modalPresentationStyle = .fullScreen
-            myPresenter.setSelectedTeam(selectedTeamIndex: indexPath.row)
-            self.present(teamsDetailsVC, animated: true, completion: nil)
+        if collectionView == teamsCollectionView{
+            let teamsDetailsVC = self.storyboard?.instantiateViewController(identifier: "TeamDetailsVC") as! TeamDetailsVC
+            
+            if collectionView == teamsCollectionView {
+                teamsDetailsVC.modalPresentationStyle = .fullScreen
+                myPresenter.setSelectedTeam(selectedTeamIndex: indexPath.row)
+                self.present(teamsDetailsVC, animated: true, completion: nil)
+            }
+            
         }
         
     }

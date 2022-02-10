@@ -10,5 +10,11 @@ import UIKit
 
 class UpcomingCell: UICollectionViewCell {
     
-    @IBOutlet weak var fakeImg: UIImageView!
+    @IBOutlet weak var eventName: UILabel!
+    @IBOutlet weak var eventDate: UILabel!
+    @IBOutlet weak var eventTime: UILabel!
 }
+
+//var name : String?
+//var date : String?
+//var time : String?

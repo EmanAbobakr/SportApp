@@ -256,20 +256,34 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="357" height="136"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="f.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="QpN-ts-Fak">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="357" height="136"/>
-                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhm-nz-the">
+                                                                        <rect key="frame" x="80" y="8" width="196" height="21"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEY-pc-46k">
+                                                                        <rect key="frame" x="80" y="45" width="196" height="21"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnS-BU-x1h">
+                                                                        <rect key="frame" x="80" y="81" width="196" height="21"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
-                                                                <constraints>
-                                                                    <constraint firstItem="QpN-ts-Fak" firstAttribute="top" secondItem="1bB-pC-gat" secondAttribute="top" id="Ihr-34-LWP"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="QpN-ts-Fak" secondAttribute="trailing" id="KBD-9L-XU1"/>
-                                                                    <constraint firstItem="QpN-ts-Fak" firstAttribute="leading" secondItem="1bB-pC-gat" secondAttribute="leading" id="Nvd-fe-GO8"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="QpN-ts-Fak" secondAttribute="bottom" id="fPb-Cy-QR6"/>
-                                                                </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="357" height="136"/>
                                                             <connections>
-                                                                <outlet property="fakeImg" destination="QpN-ts-Fak" id="4Xf-PZ-ZGI"/>
+                                                                <outlet property="eventDate" destination="yEY-pc-46k" id="SJu-fL-dCx"/>
+                                                                <outlet property="eventName" destination="qhm-nz-the" id="haa-B3-Jvw"/>
+                                                                <outlet property="eventTime" destination="XnS-BU-x1h" id="XTM-Mf-1Ik"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>

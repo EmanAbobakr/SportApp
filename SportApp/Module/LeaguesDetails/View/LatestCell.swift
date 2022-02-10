@@ -13,3 +13,10 @@ class LatestCell: UICollectionViewCell {
     @IBOutlet weak var fakeImg: UIImageView!
     
 }
+
+//var firstTeam : String?
+//var secondTeam : String?
+//var firstScore : String?
+//var secondScore : String?
+//var date : String?
+//var time : String?

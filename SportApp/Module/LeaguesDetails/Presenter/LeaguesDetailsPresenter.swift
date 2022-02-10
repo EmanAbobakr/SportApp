@@ -14,7 +14,7 @@ class LeaguesDetailsPresenter {
     var dataAPI : APIServiceProtocol = APIService()
     var eventsResult : [Event]!
     var upcomingResult : [Event]!
-    var latest : [Event]!
+    var latestResult : [Event]!
     var teamsResult : [Team]!
     var myView : LeaguesDetailsProtocol!
     var coredataManager : CoredataManagerVSLeagues = CoredataManager()
@@ -29,22 +29,13 @@ class LeaguesDetailsPresenter {
         dataAPI.fetchDataFromAPI(url: (Links.events.rawValue + leagueData.id), param: nil, responseClass: EventsResult.self) { [weak self](eventsResult) in
             self?.eventsResult = eventsResult?.events
             DispatchQueue.main.async {
+                self?.filterEventsBasedOnDate(eventsResult: self?.eventsResult)
                 self?.myView.reloadupComingCollectionData()
-                self?.myView.stopAnimator()
-                //self?.filterEventsBasedOnDate(eventsResult: self?.eventsResult)
+                self?.myView.reloadLatestCollectionData()
+                //self?.myView.stopAnimator()
+        
             }
         }
-//        if var er = eventsResult{
-//            for i in eventsResult
-//            {
-//                //print("Fetched events data\(eventsResult[0].strStatus)")
-//                print("Fetched events data\(i.strStatus)")
-//            }
-//        }
-//        else{
-//            print("Fetched events data (Empty)")
-//        }
-//
     }
     
     func getTeams()
@@ -63,33 +54,37 @@ class LeaguesDetailsPresenter {
     }
     
     func filterEventsBasedOnDate(eventsResult: [Event]!){
+        upcomingResult = []
+        latestResult = []
         for item in eventsResult{
-            var apiDate = item.strTimestamp
-            apiDate = apiDate!.replacingOccurrences(of: "T", with: " ")
-            apiDate = apiDate!.replacingOccurrences(of: "+00:00", with: "+0000")
+            var apiDate = item.strTimestamp ?? ""
+            
+            apiDate = apiDate.replacingOccurrences(of: "T", with: " ")
+            apiDate = apiDate.replacingOccurrences(of: "+00:00", with: "+0000")
+            print("apiDate \(apiDate)")
 
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ssZ"
             dateFormatter.timeZone = TimeZone(identifier: "GMT")
             let currentDate = dateFormatter.string(from: Date())
+            print("current data \(currentDate)")
 
-            if apiDate! >= currentDate{
+
+            if apiDate >= currentDate{
                 //print("Upcoming")
                 upcomingResult.append(item)
             }
-            else if apiDate! < currentDate{
+            else if apiDate < currentDate{
                 //print("Latest")
-                latest.append(item)
+                latestResult.append(item)
             }
         }
         print("count of all \(eventsResult.count)")
         print("upcoming count \(upcomingResult.count)")
-        print("latest count \(latest.count)")
+        print("latest count \(latestResult.count)")
     }
     
-//    func printLeagueID(){
-//        print("Hello from print league ID in leagues details presenter \(leagueID)")
-//    }
+
     func setSelectedTeam(selectedTeamIndex: Int) {
         let team = teamsResult[selectedTeamIndex]
         RouterTeamDetails.presenter.selectedTeam = team
@@ -120,9 +115,7 @@ class LeaguesDetailsPresenter {
     
     func deleteFavouriteLeague(){
         
-        print("sandra2")
         coredataManager.deleteFavouriteLeague(deletedData: leagueData)
-        print("sandra3")
         myView.setupHeartIcon(flag: false)
     }
     
