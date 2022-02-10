@@ -95,14 +95,16 @@ extension HomeVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollecti
         let resizingProcessor = ResizingImageProcessor(referenceSize: (cell.cellImage.frame.size), mode: .aspectFit)
         cell.cellImage.kf.setImage(with: url, options: [.processor(resizingProcessor)])
         
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 15
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.gray.cgColor
         return cell
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.frame.size.width/2 - 2 , height: view.frame.size.height/4 - 4 )
+        return CGSize(width: (self.myHomeCollection.frame.size.width - 24) / 2 , height: self.myHomeCollection.frame.size.width / 2)
         
         
     }
