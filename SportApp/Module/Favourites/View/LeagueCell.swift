@@ -11,6 +11,7 @@ import UIKit
 class LeagueCell: UITableViewCell {
     
     
+    @IBOutlet weak var viewCell: UIView!
     @IBOutlet weak var leagueImg: UIImageView!
     @IBOutlet weak var leagueNameText: UILabel!
     
