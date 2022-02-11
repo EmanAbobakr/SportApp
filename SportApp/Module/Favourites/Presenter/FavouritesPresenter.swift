@@ -13,10 +13,7 @@ class favouritesPresenter{
     var myView : FavouritesProtocol!
     var favourites : [NSManagedObject]!
     var coredataManager : CoredataManagerVSFavourites = CoredataManager()
-    
-
-    //let monitor = NWPathMonitor()
-    
+        
     
     func attachView(view: FavouritesProtocol)
     {
@@ -32,4 +29,7 @@ class favouritesPresenter{
         
     }
     
+    func setLeagueData(leagueData : LeaguesResultView){
+        RouterDetails.presenter.leagueData = leagueData
+    }
 }
