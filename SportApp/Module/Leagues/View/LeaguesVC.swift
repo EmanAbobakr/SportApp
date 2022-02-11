@@ -115,7 +115,7 @@ extension LeaguesVC
         cell.leagueImg.layer.cornerRadius = 110 / 2
         //cell.leagueImg.kf.setImage(with: url)
         cell.vcDelegation = self
-        
+        //any thing
         return cell
     }
     
