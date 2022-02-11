@@ -26,7 +26,7 @@ class LeaguesDetailsPresenter {
     
     func getEvents()
     {
-        dataAPI.fetchDataFromAPI(url: (Links.events.rawValue + leagueData.id), param: nil, responseClass: EventsResult.self) { [weak self](eventsResult) in
+        dataAPI.fetchDataFromAPI(url: (Links.events.rawValue + leagueData.id), param: nil, responseClass: EventsResult.self) { [weak self](eventsResult, error) in
             self?.eventsResult = eventsResult?.events
             DispatchQueue.main.async {
                 self?.filterEventsBasedOnDate(eventsResult: self?.eventsResult)
@@ -40,7 +40,7 @@ class LeaguesDetailsPresenter {
     
     func getTeams()
     {
-        dataAPI.fetchDataFromAPI(url: (Links.teams.rawValue), param: ["l":leagueData.name ?? ""], responseClass: TeamsResult.self) { [weak self](teamsResult) in
+        dataAPI.fetchDataFromAPI(url: (Links.teams.rawValue), param: ["l":leagueData.name ?? ""], responseClass: TeamsResult.self) { [weak self](teamsResult, error) in
             self?.teamsResult = teamsResult?.teams
             DispatchQueue.main.async {
                 self?.myView.reloadTeamsCollectionData()

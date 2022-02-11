@@ -23,7 +23,7 @@ class HomePresenter
     
     func getSports()
     {
-        sportsAPI.fetchDataFromAPI(url: Links.sports.rawValue, param: nil, responseClass: SportsResult.self) { [weak self](sportsResult) in
+        sportsAPI.fetchDataFromAPI(url: Links.sports.rawValue, param: nil, responseClass: SportsResult.self) { [weak self](sportsResult, error) in
             self?.sportsResult = sportsResult!.sports
             DispatchQueue.main.async {
                 self?.myView.reloadCollectionData()
