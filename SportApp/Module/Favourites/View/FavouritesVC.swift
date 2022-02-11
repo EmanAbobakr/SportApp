@@ -118,6 +118,7 @@ extension FavouritesVC{
             cell.leagueNameText.text = favourites[indexPath.row].value(forKey: "leagueName") as? String
             let url = URL(string: (favourites[indexPath.row].value(forKey: "leagueImgURL") as? String)!)
             cell.leagueImg.kf.setImage(with: url)
+            cell.vcDelegation = self
             
             return cell
         }
@@ -160,15 +161,16 @@ extension FavouritesVC{
         override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return 200
         }
-        
+
 }
 
 extension FavouritesVC : customCellProtocol
 {
     func cell(cell: LeagueCell, didTapBtn: UIButton) {
-        let rowIndex = self.tableView.indexPath(for: cell)
-        print(rowIndex)
-        //let youtubeURL = URL(string: "https://"+favourites[rowIndex])
-        //UIApplication.shared.open(youtubeUrl)
+        let rowIndex = self.tableView.insdexPath(for: cell)
+        //print(rowIndex)
+        var yt = favourites[rowIndex![1]].value(forKey: "leagueYtuURL") as! String
+        let youtubeURL = URL(string:  "https://"+yt)
+        UIApplication.shared.open(youtubeURL!)
     }
 }

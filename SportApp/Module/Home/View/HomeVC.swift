@@ -17,8 +17,8 @@ protocol HomeProtocol
 
 struct ResultView
 {
-    var name: String
-    var imageURL : String
+    var name: String?
+    var imageURL : String?
 }
 
 class HomeVC: UIViewController {
@@ -41,7 +41,7 @@ class HomeVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let selectedItemNum = myHomeCollection.indexPathsForSelectedItems![0][1]
         print(resultView[selectedItemNum].name)
-        myPresenter.setSportName(sportName: resultView[selectedItemNum].name)
+        myPresenter.setSportName(sportName: resultView[selectedItemNum].name ?? "")
         let _ = segue.destination as! LeaguesVC
     }
 
@@ -91,7 +91,7 @@ extension HomeVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollecti
         cell.cellText.text = resultView[indexPath.row].name
         
         
-        let url = URL(string: resultView[indexPath.row].imageURL)
+        let url = URL(string: resultView[indexPath.row].imageURL ?? "")
         let resizingProcessor = ResizingImageProcessor(referenceSize: (cell.cellImage.frame.size), mode: .aspectFit)
         cell.cellImage.kf.setImage(with: url, options: [.processor(resizingProcessor)])
         

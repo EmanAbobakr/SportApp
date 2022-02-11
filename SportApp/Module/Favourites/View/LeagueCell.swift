@@ -22,6 +22,10 @@ class LeagueCell: UITableViewCell {
         print("You clicked the btn")
         //print(youtubeBtn.title(for: .normal))
         //vcDelegation = LeaguesVC()
+        print("I will print self")
+        print(self)
+        print("I will print sender")
+        print(sender)
         vcDelegation.cell(cell: self, didTapBtn: sender)
     }
    

@@ -181,8 +181,7 @@ extension LeaguesVC
     */
 }
 
-extension LeaguesVC : customCellProtocol
-{
+extension LeaguesVC : customCellProtocol{
     func cell(cell: LeagueCell, didTapBtn: UIButton) {
         let rowIndex = self.tableView.indexPath(for: cell)
         let youtubeUrl = URL(string: "https://"+resultView[rowIndex![1]].ytURL)!

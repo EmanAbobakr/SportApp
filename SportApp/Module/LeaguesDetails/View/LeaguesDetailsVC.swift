@@ -74,11 +74,6 @@ class LeaguesDetailsVC: UITableViewController {
         sleep(2)
         getEventsData()
     
-    
-    //for just now
-    //myPresenter.getEvents()
-    //myPresenter.printLeagueID()
-        //myPresenter.printLeague()
     }
     
     func animator(){
@@ -146,11 +141,9 @@ extension LeaguesDetailsVC : LeaguesDetailsProtocol {
         teamsResultView = myPresenter.teamsResult.map({ (item) -> String in
             return item.strTeamBadge
         })
-        //print(resultView ?? "no data")
         self.tableView.reloadData()
         self.teamsCollectionView.reloadData()
         
-        //self.teamsCollectionView.reloadData()
     }
     
     func setupHeartIcon(flag: Bool){
@@ -171,17 +164,14 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == self.upcomingCollectionView{
-            print("I am an upcoming count")
             return upcomingResultView?.count ?? 0
         }
             
         else if collectionView == self.latestCollectionView{
-            print("I am a latest count")
             return latestResultView?.count ?? 0
         }
         
         else{
-            print("I am a team count")
             return teamsResultView?.count ?? 0
         }
 
@@ -190,7 +180,6 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == upcomingCollectionView{
-            print("I am an upcoming cell")
             let cellA = collectionView.dequeueReusableCell(withReuseIdentifier: "UpcomingCellID", for: indexPath) as! UpcomingCell
             cellA.eventName.text = upcomingResultView[indexPath.row].name
             cellA.eventDate.text = upcomingResultView[indexPath.row].date
@@ -200,7 +189,6 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
         }
             
         else if collectionView == latestCollectionView{
-            print("I am a latest cell")
             let cellB = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestCellID", for: indexPath) as! LatestCell
             cellB.teams.text = (latestResultView[indexPath.row].firstTeam ?? "") + " vs " + (latestResultView[indexPath.row].secondTeam ?? "")
             cellB.scores.text = (latestResultView[indexPath.row].firstScore ?? "") + " : " + (latestResultView[indexPath.row].secondScore ?? "")
@@ -212,7 +200,6 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
             
             
         else{
-            print("I am a team cell")
 
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCellID", for: indexPath) as! TeamsCell
             
