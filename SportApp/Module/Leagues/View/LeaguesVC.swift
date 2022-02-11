@@ -102,7 +102,18 @@ extension LeaguesVC
       
         cell.leagueNameText.text = resultView[indexPath.row].name
         let url = URL(string: resultView[indexPath.row].imageURL)
-        cell.leagueImg.kf.setImage(with: url)
+        
+        let resizingProcessor = ResizingImageProcessor(referenceSize: (cell.leagueImg.frame.size), mode: .aspectFit)
+        cell.leagueImg.kf.setImage(with: url, options: [.processor(resizingProcessor)])
+        
+        cell.viewCell.layer.cornerRadius = cell.viewCell.frame.height / 2
+        
+        //cell.viewCell.layer.borderWidth = 0.5
+        
+        //cell.viewCell.layer.borderColor = UIColor.gray.cgColor
+        
+        cell.leagueImg.layer.cornerRadius = 110 / 2
+        //cell.leagueImg.kf.setImage(with: url)
         cell.vcDelegation = self
         
         return cell
@@ -121,7 +132,7 @@ extension LeaguesVC
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 130
     }
 
     /*
