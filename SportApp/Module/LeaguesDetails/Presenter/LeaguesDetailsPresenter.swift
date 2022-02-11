@@ -61,13 +61,13 @@ class LeaguesDetailsPresenter {
             
             apiDate = apiDate.replacingOccurrences(of: "T", with: " ")
             apiDate = apiDate.replacingOccurrences(of: "+00:00", with: "+0000")
-            print("apiDate \(apiDate)")
+            //print("apiDate \(apiDate)")
 
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ssZ"
             dateFormatter.timeZone = TimeZone(identifier: "GMT")
             let currentDate = dateFormatter.string(from: Date())
-            print("current data \(currentDate)")
+            //print("current data \(currentDate)")
 
 
             if apiDate >= currentDate{
@@ -79,9 +79,9 @@ class LeaguesDetailsPresenter {
                 latestResult.append(item)
             }
         }
-        print("count of all \(eventsResult.count)")
-        print("upcoming count \(upcomingResult.count)")
-        print("latest count \(latestResult.count)")
+//        print("count of all \(eventsResult.count)")
+//        print("upcoming count \(upcomingResult.count)")
+//        print("latest count \(latestResult.count)")
     }
     
 
