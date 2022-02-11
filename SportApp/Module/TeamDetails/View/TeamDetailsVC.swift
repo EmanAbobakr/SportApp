@@ -22,10 +22,6 @@ class TeamDetailsVC: UIViewController {
     @IBOutlet weak var teamInformedYear: UILabel!
     @IBOutlet weak var teamStedium: UILabel!
     @IBOutlet weak var teamDescription: UILabel!
-    @IBOutlet weak var teamWebsite: UILabel!
-    @IBOutlet weak var teamFacebook: UILabel!
-    @IBOutlet weak var teamTwitter: UILabel!
-    @IBOutlet weak var teamInstegram: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,11 +54,7 @@ class TeamDetailsVC: UIViewController {
         teamLeague.text = team.strLeague
         teamCountry.text = team.strCountry
         teamStedium.text = team.strStadium
-        teamFacebook.text = team.strFacebook
         teamInformedYear.text = team.intFormedYear
-        teamTwitter.text = team.strTwitter
-        teamInstegram.text = team.strInstagram
-        teamWebsite.text = team.strWebsite
         teamDescription.text = team.strDescriptionEN
         
     }
