@@ -33,7 +33,6 @@
 		81DADB5C27A40FBC00543B4C /* HomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DADB5B27A40FBC00543B4C /* HomeCollectionCell.swift */; };
 		81DEEF8B27B075A600E7D464 /* TeamsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DEEF8A27B075A600E7D464 /* TeamsCell.swift */; };
 		81DEEF9327B084F100E7D464 /* TeamDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DEEF9227B084F100E7D464 /* TeamDetailsVC.swift */; };
-		81EDEE7A27B5D6E4005E5959 /* m.png in Resources */ = {isa = PBXBuildFile; fileRef = 81EDEE7927B5D6E4005E5959 /* m.png */; };
 		81EDEE7C27B5F83E005E5959 /* RouterFavourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EDEE7B27B5F83E005E5959 /* RouterFavourites.swift */; };
 		CA3B650627B29B9900B488A6 /* EventsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3B650527B29B9900B488A6 /* EventsData.swift */; };
 		CA50D22527AF4104007F9D5C /* TeamsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA50D22427AF4104007F9D5C /* TeamsData.swift */; };
@@ -77,7 +76,6 @@
 		81DADB5B27A40FBC00543B4C /* HomeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionCell.swift; sourceTree = "<group>"; };
 		81DEEF8A27B075A600E7D464 /* TeamsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCell.swift; sourceTree = "<group>"; };
 		81DEEF9227B084F100E7D464 /* TeamDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsVC.swift; sourceTree = "<group>"; };
-		81EDEE7927B5D6E4005E5959 /* m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = m.png; path = ../../../m.png; sourceTree = "<group>"; };
 		81EDEE7B27B5F83E005E5959 /* RouterFavourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RouterFavourites.swift; path = SportApp/Module/Favourites/Presenter/RouterFavourites.swift; sourceTree = SOURCE_ROOT; };
 		BE72577204D785A53D9F49E6 /* Pods-SportApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportApp.release.xcconfig"; path = "Target Support Files/Pods-SportApp/Pods-SportApp.release.xcconfig"; sourceTree = "<group>"; };
 		CA3B650527B29B9900B488A6 /* EventsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsData.swift; sourceTree = "<group>"; };
@@ -233,7 +231,6 @@
 		81DADB3A27A4094300543B4C /* SportApp */ = {
 			isa = PBXGroup;
 			children = (
-				81EDEE7927B5D6E4005E5959 /* m.png */,
 				81DADB5127A4097700543B4C /* Model */,
 				81DADB5027A4096100543B4C /* Module */,
 				81DADB4F27A4095400543B4C /* View */,
@@ -439,7 +436,6 @@
 				81DADB4827A4094500543B4C /* LaunchScreen.storyboard in Resources */,
 				81DADB4527A4094500543B4C /* Assets.xcassets in Resources */,
 				81DADB4327A4094300543B4C /* Main.storyboard in Resources */,
-				81EDEE7A27B5D6E4005E5959 /* m.png in Resources */,
 				CA6450C727AAB93700451A84 /* DarkColors.jpeg in Resources */,
 				CA6450C527AAB90B00451A84 /* LightColors.jpeg in Resources */,
 			);
