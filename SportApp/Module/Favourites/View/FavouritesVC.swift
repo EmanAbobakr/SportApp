@@ -30,18 +30,22 @@ class FavouritesVC: UITableViewController, FavouritesProtocol {
     //old
     var favourites : [NSManagedObject]! = []
     var coredataManager : CoredataManagerVSFavourites = CoredataManager()
+    var netWorkFlag : Bool?
     //end old
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let monitor = NWPathMonitor()
+        
 
         monitor.pathUpdateHandler = { path in
             if path.status == .satisfied {
+                self.netWorkFlag = true
                 print("We're connected!")
                 //return true
             } else {
+                self.netWorkFlag = false
                 print("No connection.")
                 //return false
             }
@@ -130,29 +134,41 @@ extension FavouritesVC{
         override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             
             myPresenter.checkInternetConnection()
-            //Alert start
-            let alert1 = UIAlertController(title: "Unable to connect", message: "Please check your Internet connection ", preferredStyle: .actionSheet)
-//            alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-//                print("Ok is pressed")
-//            }))
-            alert1.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {action in
-                print("Cancel is pressed")
-            }))
-            //alert1.addAction(UIAlertAction(title: "what", style: .destructive, handler: nil))
-            //Alert end
+            if netWorkFlag!{
+                
+                var tempLeagueData = LeaguesResultView(id: (favourites[indexPath.row].value(forKey: "leagueId") as? String) ?? "", name: (favourites[indexPath.row].value(forKey: "leagueName") as? String) ?? "", imageURL: (favourites[indexPath.row].value(forKey: "leagueImgURL") as? String) ?? "", ytURL: (favourites[indexPath.row].value(forKey: "leagueYtuURL") as? String) ?? "")
+                
+                    let detailsVC = self.storyboard?.instantiateViewController(identifier: "LeaguesDetailsVCID") as! LeaguesDetailsVC
+                    myPresenter.setLeagueData(leagueData : tempLeagueData)
+                    detailsVC.modalPresentationStyle = .fullScreen
+                    self.present(detailsVC, animated: true, completion: nil)
+                
+            }
+            else{
+                let alert1 = UIAlertController(title: "Unable to connect", message: "Please check your Internet connection ", preferredStyle: .actionSheet)
+
+                alert1.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {action in
+                    print("Cancel is pressed")
+                    
+                }))
+                self.present(alert1, animated: true, completion: nil)
+            }
             
-            self.present(alert1, animated: true, completion: nil)
-//            //start navigate
-//                let detailsVC = self.storyboard?.instantiateViewController(identifier: "LeaguesDetailsVCID") as! LeaguesDetailsVC
-//                myPresenter.setLeagueData(leagueData : favourites[indexPath.row])
-//                detailsVC.modalPresentationStyle = .fullScreen
-//                //resultView[indexPath.row]
-//                self.present(detailsVC, animated: true, completion: nil)
-//            //end navigate
+
             }
     
         override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return 200
         }
         
+}
+
+extension FavouritesVC : customCellProtocol
+{
+    func cell(cell: LeagueCell, didTapBtn: UIButton) {
+        let rowIndex = self.tableView.indexPath(for: cell)
+        print(rowIndex)
+        //let youtubeURL = URL(string: "https://"+favourites[rowIndex])
+        //UIApplication.shared.open(youtubeUrl)
+    }
 }
