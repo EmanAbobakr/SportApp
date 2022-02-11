@@ -139,7 +139,8 @@ extension LeaguesDetailsVC : LeaguesDetailsProtocol {
     func reloadTeamsCollectionData() {
         
         teamsResultView = myPresenter.teamsResult.map({ (item) -> String in
-            return item.strTeamBadge
+            //return item.strTeamBadge ?? ""
+            return (item.strTeamBadge ?? "")
         })
         self.tableView.reloadData()
         self.teamsCollectionView.reloadData()

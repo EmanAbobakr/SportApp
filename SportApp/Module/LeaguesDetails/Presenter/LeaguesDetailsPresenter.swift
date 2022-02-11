@@ -12,7 +12,7 @@ import CoreData
 class LeaguesDetailsPresenter {
     var leagueData : LeaguesResultView!
     var dataAPI : APIServiceProtocol = APIService()
-    var eventsResult : [Event]!
+    var eventsResult : [Event]?
     var upcomingResult : [Event]!
     var latestResult : [Event]!
     var teamsResult : [Team]!
@@ -26,7 +26,17 @@ class LeaguesDetailsPresenter {
     
     func getEvents()
     {
-        dataAPI.fetchDataFromAPI(url: (Links.events.rawValue + leagueData.id), param: nil, responseClass: EventsResult.self) { [weak self](eventsResult, error) in
+//        dataAPI.fetchDataFromAPI(url: (Links.events.rawValue + leagueData.id), param: nil, responseClass: EventsResult.self) { [weak self](eventsResult) in
+//            self?.eventsResult = eventsResult?.events
+//            DispatchQueue.main.async {
+//                self?.filterEventsBasedOnDate(eventsResult: self?.eventsResult)
+//                self?.myView.reloadupComingCollectionData()
+//                self?.myView.reloadLatestCollectionData()
+//                //self?.myView.stopAnimator()
+//
+//            }
+//        }
+        dataAPI.fetchDataFromAPI(url: (Links.events.rawValue), param: ["id":leagueData.id ?? ""], responseClass: EventsResult.self) { [weak self](eventsResult) in
             self?.eventsResult = eventsResult?.events
             DispatchQueue.main.async {
                 self?.filterEventsBasedOnDate(eventsResult: self?.eventsResult)
@@ -56,7 +66,7 @@ class LeaguesDetailsPresenter {
     func filterEventsBasedOnDate(eventsResult: [Event]!){
         upcomingResult = []
         latestResult = []
-        for item in eventsResult{
+        for item in eventsResult ?? []{
             var apiDate = item.strTimestamp ?? ""
             
             apiDate = apiDate.replacingOccurrences(of: "T", with: " ")
