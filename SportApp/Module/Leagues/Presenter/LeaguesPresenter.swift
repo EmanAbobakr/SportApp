@@ -28,7 +28,7 @@ class LeaguesPresenter
     {
         //var spacelessSportName = sportName.replacingOccurrences(of: " ", with: "")
         //print("trimmed \(spacelessSportName)")
-        leaguesAPI.fetchDataFromAPI(url: (Links.leagues.rawValue), param: ["s":sportName ?? ""], responseClass: LeaguesResult.self) { [weak self](leaguesResult) in
+        leaguesAPI.fetchDataFromAPI(url: (Links.leagues.rawValue), param: ["s":sportName ?? ""], responseClass: LeaguesResult.self) { [weak self](leaguesResult,error) in
             self?.leaguesResult = leaguesResult!.countrys
             DispatchQueue.main.async {
                 self?.myView.reloadTableData()

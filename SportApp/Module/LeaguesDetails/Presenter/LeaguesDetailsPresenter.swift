@@ -36,7 +36,7 @@ class LeaguesDetailsPresenter {
 //
 //            }
 //        }
-        dataAPI.fetchDataFromAPI(url: (Links.events.rawValue), param: ["id":leagueData.id ?? ""], responseClass: EventsResult.self) { [weak self](eventsResult) in
+        dataAPI.fetchDataFromAPI(url: (Links.events.rawValue), param: ["id":leagueData.id ?? ""], responseClass: EventsResult.self) { [weak self](eventsResult,error) in
             self?.eventsResult = eventsResult?.events
             DispatchQueue.main.async {
                 self?.filterEventsBasedOnDate(eventsResult: self?.eventsResult)
