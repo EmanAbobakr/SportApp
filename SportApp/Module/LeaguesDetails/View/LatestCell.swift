@@ -10,8 +10,11 @@ import UIKit
 
 class LatestCell: UICollectionViewCell {
     
-    @IBOutlet weak var fakeImg: UIImageView!
     
+    @IBOutlet weak var teams: UILabel!
+    @IBOutlet weak var scores: UILabel!
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var time: UILabel!
 }
 
 //var firstTeam : String?

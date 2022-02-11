@@ -48,7 +48,6 @@ class LeaguesDetailsVC: UITableViewController {
     }
     
     @IBOutlet weak var favouriteIcon: UIBarButtonItem!
-    
     @IBOutlet weak var upcomingCollectionView: UICollectionView!
     @IBOutlet weak var latestCollectionView: UICollectionView!
     @IBOutlet weak var teamsCollectionView: UICollectionView!
@@ -131,14 +130,15 @@ extension LeaguesDetailsVC : LeaguesDetailsProtocol {
             return UpcomingResultView(name: item.strEvent, date: item.dateEvent, time: item.strTime)
         })
         self.tableView.reloadData()
-        self.teamsCollectionView.reloadData()
+        self.upcomingCollectionView.reloadData()
     }
     
     func reloadLatestCollectionData() {
         latestResultView = myPresenter.latestResult.map({ (item) -> LatestResultView in
             return LatestResultView(firstTeam: item.strHomeTeam, secondTeam: item.strAwayTeam, firstScore: item.intHomeScore, secondScore: item.intAwayScore, date: item.dateEvent, time: item.strTime)
         })
-        
+        self.tableView.reloadData()
+        self.latestCollectionView.reloadData()
     }
     
     func reloadTeamsCollectionData() {
@@ -177,7 +177,7 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
             
         else if collectionView == self.latestCollectionView{
             print("I am a latest count")
-            return 7
+            return latestResultView?.count ?? 0
         }
         
         else{
@@ -199,10 +199,14 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
             return cellA
         }
             
-        else if collectionView == self.latestCollectionView{
+        else if collectionView == latestCollectionView{
             print("I am a latest cell")
             let cellB = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestCellID", for: indexPath) as! LatestCell
-            
+            cellB.teams.text = (latestResultView[indexPath.row].firstTeam ?? "") + " vs " + (latestResultView[indexPath.row].secondTeam ?? "")
+            cellB.scores.text = (latestResultView[indexPath.row].firstScore ?? "") + " : " + (latestResultView[indexPath.row].secondScore ?? "")
+            cellB.date.text = latestResultView[indexPath.row].date ?? ""
+            cellB.time.text = latestResultView[indexPath.row].time ?? ""
+
             return cellB
         }
             
