@@ -43,7 +43,7 @@ class TeamDetailsVC: UIViewController {
     }
     func setScreenData() {
         teamName.text = team.strTeam
-        let imageURL = URL(string: team.strTeamBadge)
+        let imageURL = URL(string: team.strTeamBadge ?? "")
         
         teamBadge.layer.cornerRadius = teamBadge.frame.height / 2
         let resizingProcessor = ResizingImageProcessor(referenceSize: (teamBadge.frame.size), mode: .aspectFit)

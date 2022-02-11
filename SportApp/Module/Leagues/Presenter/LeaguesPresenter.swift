@@ -26,7 +26,9 @@ class LeaguesPresenter
     
     func getLeagues()
     {
-        leaguesAPI.fetchDataFromAPI(url: (Links.leagues.rawValue + sportName), param: nil, responseClass: LeaguesResult.self) { [weak self](leaguesResult) in
+        //var spacelessSportName = sportName.replacingOccurrences(of: " ", with: "")
+        //print("trimmed \(spacelessSportName)")
+        leaguesAPI.fetchDataFromAPI(url: (Links.leagues.rawValue), param: ["s":sportName ?? ""], responseClass: LeaguesResult.self) { [weak self](leaguesResult) in
             self?.leaguesResult = leaguesResult!.countrys
             DispatchQueue.main.async {
                 self?.myView.reloadTableData()

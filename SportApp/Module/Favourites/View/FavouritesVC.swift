@@ -167,7 +167,7 @@ extension FavouritesVC{
 extension FavouritesVC : customCellProtocol
 {
     func cell(cell: LeagueCell, didTapBtn: UIButton) {
-        let rowIndex = self.tableView.insdexPath(for: cell)
+        let rowIndex = self.tableView.indexPath(for: cell)
         //print(rowIndex)
         var yt = favourites[rowIndex![1]].value(forKey: "leagueYtuURL") as! String
         let youtubeURL = URL(string:  "https://"+yt)
