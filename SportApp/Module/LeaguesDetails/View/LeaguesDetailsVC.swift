@@ -217,9 +217,14 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCellID", for: indexPath) as! TeamsCell
             
             
-            let resizingProcessor = ResizingImageProcessor(referenceSize: (cell.teamImage.frame.size), mode: .aspectFit)
+            let resizingProcessor = ResizingImageProcessor(referenceSize: (cell.teamImage.frame.size), mode: .aspectFill)
             let url = URL(string: teamsResultView[indexPath.row])
             cell.teamImage.kf.setImage(with: url, options: [.processor(resizingProcessor)])
+            
+            cell.teamImage.layer.cornerRadius = 110 / 2
+            
+            cell.teamImage.layer.cornerRadius = 110 / 2
+            
             return cell
         }
         
@@ -241,7 +246,7 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.frame.size.width/3 - 3 , height: view.frame.size.height/4 - 4 )
+        return CGSize(width: (view.frame.size.width - 30) / 2 , height: view.frame.size.width / 2 )
         
         
     }
