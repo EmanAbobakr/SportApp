@@ -26,7 +26,7 @@ class LeaguesPresenter
     
     func getLeagues()
     {
-        leaguesAPI.fetchDataFromAPI(url: (Links.leagues.rawValue + sportName), param: nil, responseClass: LeaguesResult.self) { [weak self](leaguesResult) in
+        leaguesAPI.fetchDataFromAPI(url: (Links.leagues.rawValue + sportName), param: nil, responseClass: LeaguesResult.self) { [weak self](leaguesResult, error) in
             self?.leaguesResult = leaguesResult!.countrys
             DispatchQueue.main.async {
                 self?.myView.reloadTableData()

@@ -9,5 +9,5 @@
 import Foundation
 import Alamofire
 protocol APIServiceProtocol {
-    func fetchDataFromAPI<T: Decodable>(url: String,param: Parameters?, responseClass: T.Type, complitionHandler : @escaping (T?) -> Void)
+    func fetchDataFromAPI<T: Decodable>(url: String,param: Parameters?, responseClass: T.Type, complitionHandler : @escaping (T?,Error?) -> Void)
 }
