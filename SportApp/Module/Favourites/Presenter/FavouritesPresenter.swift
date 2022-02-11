@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreData
-import Network
 
 class favouritesPresenter{
     var myView : FavouritesProtocol!
@@ -16,7 +15,7 @@ class favouritesPresenter{
     var coredataManager : CoredataManagerVSFavourites = CoredataManager()
     
 
-    let monitor = NWPathMonitor()
+    //let monitor = NWPathMonitor()
     
     
     func attachView(view: FavouritesProtocol)
