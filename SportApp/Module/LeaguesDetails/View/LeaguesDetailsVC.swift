@@ -185,7 +185,9 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
             cellA.eventName.text = upcomingResultView[indexPath.row].name
             cellA.eventDate.text = upcomingResultView[indexPath.row].date
             cellA.eventTime.text = upcomingResultView[indexPath.row].time
-            
+            cellA.layer.cornerRadius = 15
+//            cellA.layer.borderWidth = 1
+//            cellA.layer.borderColor = UIColor.gray.cgColor
             return cellA
         }
             
@@ -195,7 +197,9 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
             cellB.scores.text = (latestResultView[indexPath.row].firstScore ?? "") + " : " + (latestResultView[indexPath.row].secondScore ?? "")
             cellB.date.text = latestResultView[indexPath.row].date ?? ""
             cellB.time.text = latestResultView[indexPath.row].time ?? ""
-
+            cellB.layer.cornerRadius = 15
+//            cellB.layer.borderWidth = 1
+//            cellB.layer.borderColor = UIColor.gray.cgColor
             return cellB
         }
             
@@ -204,19 +208,20 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
 
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCellID", for: indexPath) as! TeamsCell
             
-            cell.layer.cornerRadius = cell.teamImage.frame.height / 2
-            
-            cell.teamImage.layer.cornerRadius = 110 / 2
+            //cell.layer.cornerRadius = cell.teamImage.frame.height / 2
             
             //cell.layer.borderWidth = 1
             //cell.layer.borderColor = (UIColor.gray as! CGColor)
             let resizingProcessor = ResizingImageProcessor(referenceSize: (cell.teamImage.frame.size), mode: .aspectFill)
             
+            cell.teamImage.layer.cornerRadius = 120 / 2
             let url = URL(string: teamsResultView[indexPath.row])
             
             cell.teamImage.kf.setImage(with: url, options: [.processor(resizingProcessor)])
             
-            
+            cell.layer.cornerRadius = cell.frame.height / 2
+//            cell.layer.borderWidth = 1
+//            cell.layer.borderColor = UIColor.gray.cgColor
             
             return cell
         }
@@ -238,9 +243,15 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: (view.frame.size.width - 30) / 2 , height: view.frame.size.width / 2 )
-        
+        if collectionView == upcomingCollectionView {
+            return CGSize(width: (view.frame.size.width - 30) , height: view.frame.size.width / 2)
+        }
+        else if collectionView == latestCollectionView {
+            return CGSize(width: (view.frame.size.width - 30) , height: view.frame.size.width / 2 )
+        }
+        else {
+            return CGSize(width: (view.frame.size.width ) / 3 , height: view.frame.size.width / 3 )
+        }
         
     }
     

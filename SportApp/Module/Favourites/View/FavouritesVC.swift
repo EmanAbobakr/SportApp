@@ -116,8 +116,16 @@ extension FavouritesVC{
             // Configure the cell...
             //cell.myLabel1.text = myArr?[indexPath.row].value(forKey: "title") as? String
             cell.leagueNameText.text = favourites[indexPath.row].value(forKey: "leagueName") as? String
+            
             let url = URL(string: (favourites[indexPath.row].value(forKey: "leagueImgURL") as? String)!)
-            cell.leagueImg.kf.setImage(with: url)
+            
+            let resizingProcessor = ResizingImageProcessor(referenceSize: (cell.leagueImg.frame.size), mode: .aspectFit)
+            
+            cell.leagueImg.kf.setImage(with: url, options: [.processor(resizingProcessor)])
+            
+            cell.viewCell.layer.cornerRadius = cell.viewCell.frame.height / 2
+            
+            cell.leagueImg.layer.cornerRadius = 110 / 2
             cell.vcDelegation = self
             
             return cell
@@ -159,7 +167,7 @@ extension FavouritesVC{
             }
     
         override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 200
+            return 130
         }
 
 }
