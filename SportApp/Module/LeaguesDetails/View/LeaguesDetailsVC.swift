@@ -216,14 +216,19 @@ extension LeaguesDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource,
 
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCellID", for: indexPath) as! TeamsCell
             
+            cell.layer.cornerRadius = cell.teamImage.frame.height / 2
             
+            cell.teamImage.layer.cornerRadius = 110 / 2
+            
+            //cell.layer.borderWidth = 1
+            //cell.layer.borderColor = (UIColor.gray as! CGColor)
             let resizingProcessor = ResizingImageProcessor(referenceSize: (cell.teamImage.frame.size), mode: .aspectFill)
+            
             let url = URL(string: teamsResultView[indexPath.row])
+            
             cell.teamImage.kf.setImage(with: url, options: [.processor(resizingProcessor)])
             
-            cell.teamImage.layer.cornerRadius = 110 / 2
             
-            cell.teamImage.layer.cornerRadius = 110 / 2
             
             return cell
         }
